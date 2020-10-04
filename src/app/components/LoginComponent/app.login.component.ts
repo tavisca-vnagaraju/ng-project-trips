@@ -22,6 +22,6 @@ export class LoginComponent {
                       "?"+ AUTH0_PARAMS.RESPONSE_TYPE + "&" +
                       AUTH0_PARAMS.CLIENT_ID + "&" +
                       AUTH0_PARAMS.CONNECTION+ "&" +
-                      AUTH0_PARAMS.REDIRECT_URI+"&" +
+                      AUTH0_PARAMS.LOGIN_REDIRECT_URI+"&" +
                       AUTH0_PARAMS.SCOPE;
 }

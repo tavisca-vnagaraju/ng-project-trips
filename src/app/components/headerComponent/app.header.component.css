@@ -1,0 +1,15 @@
+.profile-image{
+    height: 50px;
+    width: 50px;
+    border-radius: 25px;
+}
+.user-info{
+    margin: 0 0 0 auto;
+}
+.userInfo-name{
+    font-size: 14px;
+}
+.logout:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}

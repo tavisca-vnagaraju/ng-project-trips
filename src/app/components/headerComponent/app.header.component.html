@@ -1,0 +1,12 @@
+<mat-toolbar color="primary" class="mat-toolbar mat-primary mat-toolbar-single-row">
+  <span class="logo">App Name</span>
+  <div *ngIf="userInfo" class="user-info">
+    <span class="login-button">{{userInfo.name}}</span>
+    <span>
+      <img [src]="userInfo.picture" class="profile-image" alt="" srcset="">
+    </span>
+    <span class="logout" (click)="logout()">
+      logout
+    </span>
+  </div>
+</mat-toolbar>
