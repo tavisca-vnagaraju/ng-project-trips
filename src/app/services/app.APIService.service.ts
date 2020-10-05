@@ -20,7 +20,7 @@ export class APIService {
   }
   getAllTrips(){
     let resp:any;
-    this.url = "http://localhost:3001/bookings";
+    this.url = "http://localhost:3001/trips";
     resp = this.http.get<any>(this.url);
     return resp;
   }

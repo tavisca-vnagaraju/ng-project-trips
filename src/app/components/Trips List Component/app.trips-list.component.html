@@ -4,7 +4,7 @@
     <div class="trips-card" *ngFor="let trip of trips">
         <p> id : {{trip.id}} </p>
         <p> status : {{trip.status}} </p>
-        <p> {{trip.source}} to {{trip.destination}} </p>
-        <p> Cost : {{trip.cost}} {{trip.currencyCode}} </p>
+        <p> Booked Date : {{trip.bookedDate}} </p>
+        <p> Cost : {{trip.totalCost}} {{trip.currencyCode}} </p>
     </div>
 </div>
