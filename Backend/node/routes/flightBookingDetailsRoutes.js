@@ -10,7 +10,14 @@ app.get('/flight/booking/details', async (req, res) => {
       res.status(500).send(err);
     }
 });
-
+app.get('/flight/booking/details/:id', async (req, res) => {
+  const flight_booking_details = await flightBookingDetailsModel.findOne({ id : req.params.id});
+  try {
+    res.send(flight_booking_details);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
 app.post('/flight/booking/details', async (req, res) => {
     const flight_booking_details = new flightBookingDetailsModel(req.body);
     try {

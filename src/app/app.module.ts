@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //modules end
@@ -14,6 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { Loading } from './components/loadingComponent/app.loading.component';
 import { LoginComponent } from './components/LoginComponent/app.login.component';
+import { TripsDetailsComponent } from './components/Trip Details Component/app.trips-details.component';
 import {AdditionComponent} from './components/jestSetupTest/app.addition.component';
 import {UserProfileComponent} from './components/auth0 setup Test/app.user-profile';
 import { AppHeaderComponent } from './components/headerComponent/app.header.component';
@@ -33,13 +35,15 @@ import  { AuthGuard } from './auth.guard';
     TripsListComponent,
     AppHeaderComponent,
     AuthButtonComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    TripsDetailsComponent
   ],
   imports: [
     MatIconModule,
     BrowserModule,
     MatButtonModule,
     MatToolbarModule,
+    MatProgressSpinnerModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,

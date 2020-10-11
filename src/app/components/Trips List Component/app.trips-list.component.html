@@ -1,10 +1,20 @@
 <app-header></app-header>
-<h1>Trips Folder</h1>
+<h1 class="heading">Trips List</h1>
+<div *ngIf="!trips">
+    <mat-spinner></mat-spinner>
+</div>
 <div class="trips-list" *ngIf="trips">
-    <div class="trips-card" *ngFor="let trip of trips">
-        <p> id : {{trip.id}} </p>
-        <p> status : {{trip.status}} </p>
-        <p> Booked Date : {{trip.bookedDate}} </p>
-        <p> Cost : {{trip.totalCost}} {{trip.currencyCode}} </p>
+    <div class="trips-heading">
+        <p>Id </p>
+        <p>Status</p>
+        <p>Booked Date</p>
+        <p>Cost </p>
+    </div>
+    <div class="trips-card" *ngFor="let trip of trips" (click)="cardClicked(trip.id)">
+        <p>{{trip.id}} </p>
+        <p>{{trip.status}} </p>
+        <p>{{trip.bookedDate}} </p>
+        <p>{{trip.totalCost}} {{trip.currencyCode}} </p>
+        <!-- <p> view itenary </p> -->
     </div>
 </div>
