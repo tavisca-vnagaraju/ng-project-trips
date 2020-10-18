@@ -24,4 +24,7 @@ export class LoginComponent {
                       AUTH0_PARAMS.CONNECTION+ "&" +
                       AUTH0_PARAMS.LOGIN_REDIRECT_URI+"&" +
                       AUTH0_PARAMS.SCOPE;
+  loginWithGoogle(){
+    window.location.href = this.loginLink;
+  }
 }

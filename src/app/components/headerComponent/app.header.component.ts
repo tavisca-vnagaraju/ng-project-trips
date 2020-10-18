@@ -13,12 +13,14 @@ import { Router } from '@angular/router';
 export class AppHeaderComponent {
   userInfo:UserInfo;
   requestParams:string;
+  errorResponse:any;
   constructor(private apiService:APIService,private router:Router){
     let access_token = localStorage.getItem('tok');
     if(access_token != null){
       this.requestParams = "access_token="+access_token+"&" + AUTH0_PARAMS.SCOPE;
       this.apiService.getUserInfoAPI(this.requestParams).subscribe(
-        user =>  this.userInfo = user
+        (user:UserInfo) =>  this.userInfo = user,
+        (error) => this.errorResponse = error
       )
     }
   }

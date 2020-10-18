@@ -12,6 +12,7 @@ export class TripsDetailsComponent {
   id:any;
   tripDetails:TripDetails;
   flightBookingDetails:FlightBookingDetails;
+  errorResponse:any;
   color:string;
   flightStatusColor:string;
   constructor(private apiService:APIService,private route: ActivatedRoute) {}
@@ -19,7 +20,8 @@ export class TripsDetailsComponent {
     this.route.params.subscribe(params => {
       this.id = params['id'];
       this.apiService.getTripDetailsById(this.id).subscribe(
-        data=> this.tripDetails = data,
+        (data:TripDetails)=> this.tripDetails = data,
+        (error) => this.errorResponse = error
       );
     });
   }
@@ -40,7 +42,8 @@ export class TripsDetailsComponent {
   }
   getFlightDetailsById(flightBookingId){
     this.apiService.getFlightDetailsById(flightBookingId).subscribe(
-      data => this.flightBookingDetails = data
+      (data:FlightBookingDetails) => this.flightBookingDetails = data,
+      (error) => this.errorResponse = error
     )
   }
 }

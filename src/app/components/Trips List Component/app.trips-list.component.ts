@@ -9,9 +9,11 @@ import {TripsList} from '../../models/app.trips-list.model';
 })
 export class TripsListComponent {
   trips:TripsList;
+  errorResponse:any;
   constructor(private apiService:APIService,private router:Router){
     this.apiService.getAllTrips().subscribe(
-      x => this.trips = x
+      (data:TripsList) => this.trips = data,
+      (error) => this.errorResponse = error
     );
   }
   cardClicked(tripId):void{

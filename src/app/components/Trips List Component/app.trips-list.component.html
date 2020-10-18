@@ -1,7 +1,10 @@
 <app-header></app-header>
 <h1 class="heading">Trips List</h1>
-<div *ngIf="!trips">
+<div *ngIf="!trips && !errorResponse">
     <mat-spinner></mat-spinner>
+</div>
+<div *ngIf="errorResponse">
+    <h1> {{errorResponse.message}} </h1>
 </div>
 <div class="trips-list" *ngIf="trips">
     <div class="trips-heading">
