@@ -26,7 +26,7 @@
     <div *ngIf="tripDetails.isHotelBooked" class="item-card">
         <app-hotel-details-component [tripDetails]="tripDetails"></app-hotel-details-component>
     </div>
-    <div *ngIf="tripDetails.isCarBooked">
-        
+    <div *ngIf="tripDetails.isCarBooked" class="item-card">
+        <app-car-details-component [tripDetails]="tripDetails"></app-car-details-component>
     </div>
 </div>

@@ -24,6 +24,13 @@ const TripDetailsSchema = new mongoose.Schema({
         "name":String,
         "startDate":String,
         "endDate":String
+    },
+    "carInfo":{
+        "status":String,
+        "pickUpLocationCode":String,
+        "dropOffLocationCode":String,
+        "startDate":String,
+        "endDate":String
     }
 });
 const TripDetails = mongoose.model("TripDetails", TripDetailsSchema,"trip_details");

@@ -1,0 +1,26 @@
+<h1 style="text-align:center;text-decoration: underline"> <b>car Details</b> </h1>
+<h2> <b> <i class="material-icons md-24">car</i> {{tripDetails.carInfo.pickUpLocationCode}} <i class="material-icons md-24">arrow_right_alt</i> {{tripDetails.carInfo.dropOffLocationCode}} </b> </h2>
+<div class="flex">
+    <h2 class="start-date"> Pick up on  {{tripDetails.carInfo.startDate}} </h2>
+    <h2 class="end-date"> Drop off on {{tripDetails.carInfo.endDate}} </h2>
+</div>
+<div class="car-booking-details">
+    <button class="cancel"> Cancel </button>
+    <h2>Confirmation Id <i class="material-icons md-24">horizontal_rule</i> {{tripDetails.carBookingId}}</h2>
+    <h2> Status : <span [style.color]="carStatusColor">{{tripDetails.carInfo.status}}</span> </h2>
+    <i *ngIf="!expanded" class="material-icons md-24 car-expand-more" (click)="expandMore(tripDetails.carBookingId)">expand_more</i>
+    <i *ngIf="expanded" class="material-icons md-24 car-expand-less" (click)="expandLess(tripDetails.carBookingId)">expand_less</i>
+</div>
+<div *ngIf="carBookingDetails && expanded" class="car-booking-details">
+    <div class="container-group">
+        <div class="source">
+            <p>{{carBookingDetails.pickUpLocation}}</p>
+            <p>{{carBookingDetails.pickUpTime}}</p>
+        </div>
+        <i class="material-icons md-24">arrow_right_alt</i>
+        <div class="destination">
+            <p>{{carBookingDetails.dropOffLocation}}</p>
+            <p>{{carBookingDetails.dropOffTime}}</p>
+        </div>
+    </div>
+</div>

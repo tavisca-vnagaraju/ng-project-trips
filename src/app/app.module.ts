@@ -23,6 +23,7 @@ import {AuthButtonComponent} from './components/auth0 setup Test/app.auth-button
 import { TripsListComponent } from './components/Trips List Component/app.trips-list.component';
 import {FlightDetailsComponent} from './components/flightDetailsComponent/app.flight-details.component';
 import { HotelDetailsComponent } from './components/hotelDetailsComponent/app.hotel-details.component';
+import { CarDetailsComponent } from './components/carDetailsComponent/app.car-details.component';
 //components imports end
 
 import { AUTH_CONFIG } from 'src/environments/environment';
@@ -40,7 +41,8 @@ import  { AuthGuard } from './auth.guard';
     UserProfileComponent,
     TripsDetailsComponent,
     FlightDetailsComponent,
-    HotelDetailsComponent
+    HotelDetailsComponent,
+    CarDetailsComponent
   ],
   imports: [
     MatIconModule,

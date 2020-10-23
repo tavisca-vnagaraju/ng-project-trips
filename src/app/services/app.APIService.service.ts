@@ -42,4 +42,10 @@ export class APIService {
     resp = this.http.get<any>(this.url);
     return resp;
   }
+  getcarDetailsById(carBookingId: any) {
+    let resp:any;
+    this.url = "http://localhost:3001/car/booking/details/"+carBookingId;
+    resp = this.http.get<any>(this.url);
+    return resp;
+  }
 }

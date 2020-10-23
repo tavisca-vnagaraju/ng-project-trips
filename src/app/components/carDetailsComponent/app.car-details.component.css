@@ -1,0 +1,59 @@
+.flex{
+    display: flex;
+}
+i{
+    vertical-align:middle;
+}
+i:hover{
+    font-weight: bold;
+}
+.start-date{
+    font-weight: bold;
+}
+.end-date{
+    margin-left: auto;
+    font-weight: bold;
+}
+.car-booking-details{
+    padding: 15px;
+    text-align: center;
+    margin: 10px;
+}
+.car-expand-more:hover{
+    cursor: pointer;
+}
+.car-expand-less:hover{
+    cursor: pointer;
+}
+.cancel{
+    padding: 15px;
+    border: 2px solid #673ab7;
+    width: 16%;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 25px;
+    margin: 10px;
+    background-color: #673ab7;
+    color: #fff;
+}
+.cancel:hover{
+    background-color:#fff ;
+    border: 2px solid #673ab7;
+    color: #673ab7;
+}
+.cancel:focus{
+    -webkit-box-shadow: 0px 0px 9px 1px rgba(103,58,183,1);
+    -moz-box-shadow: 0px 0px 9px 1px rgba(103,58,183,1);
+    box-shadow: 0px 0px 9px 1px rgba(103,58,183,1);
+    outline: none;
+}
+.container-group{
+    display: flex;
+    font-weight: 600;
+}
+.source{
+    width: 50%;
+}
+.destination{
+    width: 50%;
+}
