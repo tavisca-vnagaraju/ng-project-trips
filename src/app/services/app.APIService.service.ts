@@ -36,4 +36,10 @@ export class APIService {
     resp = this.http.get<any>(this.url);
     return resp;
   }
+  gethotelDetailsById(hotelBookingId: string) {
+    let resp:any;
+    this.url = "http://localhost:3001/hotel/booking/details/"+hotelBookingId;
+    resp = this.http.get<any>(this.url);
+    return resp;
+  }
 }

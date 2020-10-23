@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { APIService } from 'src/app/services/app.APIService.service';
 import { TripDetails } from '../../models/app.trip-details.model';
-import {FlightBookingDetails} from '../../models/app.flight-booking-details.model';
 @Component({
   selector: 'app-trip-details-component',
   templateUrl: './app.trip-details.component.html',
@@ -11,7 +10,6 @@ import {FlightBookingDetails} from '../../models/app.flight-booking-details.mode
 export class TripsDetailsComponent {
   id:any;
   tripDetails:TripDetails;
-  flightBookingDetails:FlightBookingDetails;
   errorResponse:any;
   color:string;
   flightStatusColor:string;
@@ -20,7 +18,9 @@ export class TripsDetailsComponent {
     this.route.params.subscribe(params => {
       this.id = params['id'];
       this.apiService.getTripDetailsById(this.id).subscribe(
-        (data:TripDetails)=> this.tripDetails = data,
+        (data:TripDetails)=> {
+          this.tripDetails = data;
+        },
         (error) => this.errorResponse = error
       );
     });
@@ -33,17 +33,6 @@ export class TripsDetailsComponent {
       }else {
         this.color = "red";
       }
-      if(this.tripDetails.flightInfo.status == "Booked"){
-        this.flightStatusColor = "green";
-      }else{
-        this.flightStatusColor = "red";
-      }
     }
-  }
-  getFlightDetailsById(flightBookingId){
-    this.apiService.getFlightDetailsById(flightBookingId).subscribe(
-      (data:FlightBookingDetails) => this.flightBookingDetails = data,
-      (error) => this.errorResponse = error
-    )
   }
 }

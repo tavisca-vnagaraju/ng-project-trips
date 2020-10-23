@@ -20,25 +20,13 @@
             <h2 class="trip-cost"> Cost        - <span> {{tripDetails.totalCost}} {{tripDetails.currencyCode}} </span> </h2>
         </div>
     </div>
-    <div *ngIf="tripDetails.isFlightBooked" class="flight-card">
-        <h1 style="text-align:center;text-decoration: underline"> <b>Flight Details</b> </h1>
-        <h2> <b> <i class="material-icons md-24">flight</i> {{tripDetails.flightInfo.sourceCode}} <i class="material-icons md-24">arrow_right_alt</i> {{tripDetails.flightInfo.destinationCode}} </b> </h2>
-        <div class="flex">
-            <h2 class="start-date"> Journey on {{tripDetails.flightInfo.startDate}} </h2>
-            <h2 class="end-date"> return on {{tripDetails.flightInfo.endDate}} </h2>
-        </div>
-        <div class="flight-booking-details">
-            <button class="cancel"> Cancel </button>
-            <h2>Confirmation Id <i class="material-icons md-24">horizontal_rule</i> {{tripDetails.flightBookingId}}</h2>
-            <h2> Status : <span [style.color]="flightStatusColor">{{tripDetails.flightInfo.status}}</span> </h2>
-            <i class="material-icons md-24 flight-expand" (click)="getFlightDetailsById(tripDetails.flightBookingId)">expand_more</i>
-        </div>
-        <div *ngIf="flightBookingDetails" class="flight-booking-details">
-            <h2>{{flightBookingDetails.source}} <i class="material-icons md-24">arrow_right_alt</i> {{flightBookingDetails.destination}}</h2>
-            <h1>{{flightBookingDetails.startTime}} <i class="material-icons md-24">arrow_right_alt</i> {{flightBookingDetails.endTime}}</h1>
-            <h1>{{flightBookingDetails.startDate}} <i class="material-icons md-24">multiple_stop</i> {{flightBookingDetails.endDate}}</h1>
-            <h1>Adults - {{flightBookingDetails.adults}} Children - {{flightBookingDetails.children}}</h1>
-            <h1>Journey Time - {{flightBookingDetails.journeyTime}}</h1>
-        </div>
+    <div *ngIf="tripDetails.isFlightBooked" class="item-card">
+        <app-flight-details-component [tripDetails]="tripDetails"></app-flight-details-component>
+    </div>
+    <div *ngIf="tripDetails.isHotelBooked" class="item-card">
+        <app-hotel-details-component [tripDetails]="tripDetails"></app-hotel-details-component>
+    </div>
+    <div *ngIf="tripDetails.isCarBooked">
+        
     </div>
 </div>

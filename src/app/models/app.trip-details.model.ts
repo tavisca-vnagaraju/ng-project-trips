@@ -9,7 +9,10 @@ export class TripDetails {
         public isHotelBooked:boolean,
         public isCarBooked:boolean,
         public flightBookingId:string,
-        public flightInfo:FlightInfo
+        public hotelBookingId:string,
+        public carBookingId:string,
+        public flightInfo:FlightInfo,
+        public hotelInfo:HotelInfo
     ){}
 }
 export class FlightInfo{
@@ -20,4 +23,13 @@ export class FlightInfo{
         public startDate:string,
         public endDate:string,
     ){ }
+}
+export class HotelInfo{
+    constructor(
+        public status:string,
+        public locationCode:string,
+        public name:string,
+        public startDate:string,
+        public endDate:string
+    ){}
 }
