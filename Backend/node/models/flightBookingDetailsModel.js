@@ -13,7 +13,8 @@ const FlightBookingDetailsModelSchema = new mongoose.Schema({
     "endTime":String,
     "adults":Number,
     "children":Number,
-    "journeyTime":String
+    "journeyTime":String,
+    "cancelledDate":Date
 });
 const FlightBookingDetailsModel = 
 mongoose.model("FlightBookingDetailsModel", FlightBookingDetailsModelSchema,"flight_booking_details");

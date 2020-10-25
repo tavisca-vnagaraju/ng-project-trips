@@ -18,7 +18,8 @@ app.use(express.json()); // Make sure it comes back as json
 var mongoDB = process.env.MONGODB_LINK;
 var options = {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useFindAndModify: false
 }
 mongoose.connect(mongoDB, options);
 // db connect end

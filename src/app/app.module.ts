@@ -5,6 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
+import {MatDialogModule} from '@angular/material/dialog';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { BrowserModule } from '@angular/platform-browser';
@@ -24,6 +25,7 @@ import { TripsListComponent } from './components/Trips List Component/app.trips-
 import {FlightDetailsComponent} from './components/flightDetailsComponent/app.flight-details.component';
 import { HotelDetailsComponent } from './components/hotelDetailsComponent/app.hotel-details.component';
 import { CarDetailsComponent } from './components/carDetailsComponent/app.car-details.component';
+import { ConfirmDialogComponent } from './components/confirmDialogCommponent/confirm-dialog.component';
 //components imports end
 
 import { AUTH_CONFIG } from 'src/environments/environment';
@@ -42,12 +44,14 @@ import  { AuthGuard } from './auth.guard';
     TripsDetailsComponent,
     FlightDetailsComponent,
     HotelDetailsComponent,
-    CarDetailsComponent
+    CarDetailsComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     MatIconModule,
     BrowserModule,
     MatButtonModule,
+    MatDialogModule,
     MatToolbarModule,
     MatProgressSpinnerModule,
     AppRoutingModule,
@@ -61,6 +65,7 @@ import  { AuthGuard } from './auth.guard';
     }),
   ],
   providers: [AuthGuard],
+  entryComponents: [ConfirmDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

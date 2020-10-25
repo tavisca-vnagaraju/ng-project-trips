@@ -11,6 +11,7 @@ const CarBookingDetailsModelSchema = new mongoose.Schema({
     "endDate":String,
     "pickUpTime":String,
     "dropOffTime":String,
+    "cancelledDate":Date
 });
 const CarBookingDetailsModel = 
 mongoose.model("CarBookingDetailsModel", CarBookingDetailsModelSchema,"car_booking_details");

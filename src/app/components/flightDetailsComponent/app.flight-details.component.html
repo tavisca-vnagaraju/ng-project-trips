@@ -5,7 +5,7 @@
     <h2 class="end-date"> return on {{tripDetails.flightInfo.endDate}} </h2>
 </div>
 <div class="flight-booking-details">
-    <button class="cancel"> Cancel </button>
+    <button mat-raised-button (click)="confirmDialog()" class="cancel"> Cancel </button>
     <h2>Confirmation Id <i class="material-icons md-24">horizontal_rule</i> {{tripDetails.flightBookingId}}</h2>
     <h2> Status : <span [style.color]="flightStatusColor">{{tripDetails.flightInfo.status}}</span> </h2>
     <i *ngIf="!expanded" class="material-icons md-24 flight-expand-more" (click)="expandMore(tripDetails.flightBookingId)">expand_more</i>

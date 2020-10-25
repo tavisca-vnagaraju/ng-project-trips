@@ -35,6 +35,7 @@ i:hover{
     margin: 10px;
     background-color: #673ab7;
     color: #fff;
+    line-height: normal;
 }
 .cancel:hover{
     background-color:#fff ;

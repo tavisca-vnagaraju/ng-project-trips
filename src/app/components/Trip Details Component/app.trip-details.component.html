@@ -21,12 +21,12 @@
         </div>
     </div>
     <div *ngIf="tripDetails.isFlightBooked" class="item-card">
-        <app-flight-details-component [tripDetails]="tripDetails"></app-flight-details-component>
+        <app-flight-details-component [tripDetails]="tripDetails" (onCancelTripDetailsEvent)="updateTripDetails($event)"></app-flight-details-component>
     </div>
     <div *ngIf="tripDetails.isHotelBooked" class="item-card">
-        <app-hotel-details-component [tripDetails]="tripDetails"></app-hotel-details-component>
+        <app-hotel-details-component [tripDetails]="tripDetails" (onCancelTripDetailsEvent)="updateTripDetails($event)"></app-hotel-details-component>
     </div>
     <div *ngIf="tripDetails.isCarBooked" class="item-card">
-        <app-car-details-component [tripDetails]="tripDetails"></app-car-details-component>
+        <app-car-details-component [tripDetails]="tripDetails" (onCancelTripDetailsEvent)="updateTripDetails($event)"></app-car-details-component>
     </div>
 </div>

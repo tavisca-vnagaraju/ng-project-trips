@@ -11,7 +11,8 @@ const HotelBookingDetailsModelSchema = new mongoose.Schema({
     "roomNumber":String,
     "adults":Number,
     "children":Number,
-    "numberOfDays":String
+    "numberOfDays":String,
+    "cancelledDate":Date
 });
 const HotelBookingDetailsModel = 
 mongoose.model("HotelBookingDetailsModel", HotelBookingDetailsModelSchema,"hotel_booking_details");

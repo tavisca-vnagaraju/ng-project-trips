@@ -27,12 +27,15 @@ export class TripsDetailsComponent {
   }
   ngAfterContentChecked(){
     if(this.tripDetails){
-      // this.getFlightDetailsById(this.tripDetails.flightBookingId);
+      // this.getFlightBookingDetailsById(this.tripDetails.flightBookingId);
       if(this.tripDetails.status == "Booked"){
         this.color = "green";
       }else {
         this.color = "red";
       }
     }
+  }
+  updateTripDetails(updatedTripDetails){
+    this.tripDetails = updatedTripDetails;
   }
 }
