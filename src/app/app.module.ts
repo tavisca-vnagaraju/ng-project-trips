@@ -1,5 +1,6 @@
 //modules start
-import { NgModule } from '@angular/core';
+import { NgModule , CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import {FormsModule} from '@angular/forms';
 import { AuthModule } from '@auth0/auth0-angular';
 import { MatIconModule } from '@angular/material/icon';
 import { AppRoutingModule } from './app-routing.module';
@@ -11,7 +12,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //modules end
-
+import './lit-elements/app.MyElement.litelement';
+import './lit-elements/app.footer.litelement';
 //components imports start
 import { AppComponent } from './app.component';
 import { Loading } from './components/loadingComponent/app.loading.component';
@@ -51,6 +53,7 @@ import  { AuthGuard } from './auth.guard';
     MatIconModule,
     BrowserModule,
     MatButtonModule,
+    FormsModule,
     MatDialogModule,
     MatToolbarModule,
     MatProgressSpinnerModule,
@@ -65,6 +68,7 @@ import  { AuthGuard } from './auth.guard';
     }),
   ],
   providers: [AuthGuard],
+  schemas:[CUSTOM_ELEMENTS_SCHEMA],
   entryComponents: [ConfirmDialogComponent],
   bootstrap: [AppComponent]
 })
