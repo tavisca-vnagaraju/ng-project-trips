@@ -12,6 +12,7 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./app.car-details.component.css']
 })
 export class CarDetailsComponent {
+  isDisabled:boolean = false;
   @Input() tripDetails: TripDetails;
   @Output() onCancelTripDetailsEvent = new EventEmitter<TripDetails>();
   carBookingDetails:CarBookingDetails;
@@ -34,6 +35,7 @@ export class CarDetailsComponent {
           this.carStatusColor = "green";
         }else{
           this.carStatusColor = "red";
+          this.isDisabled = true;
         }
       }
     }

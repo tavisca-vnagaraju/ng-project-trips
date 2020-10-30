@@ -32,6 +32,7 @@ import { ConfirmDialogComponent } from './components/confirmDialogCommponent/con
 
 import { AUTH_CONFIG } from 'src/environments/environment';
 import  { AuthGuard } from './auth.guard';
+import { ColorDirective } from './directives/app.color.directive';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import  { AuthGuard } from './auth.guard';
     FlightDetailsComponent,
     HotelDetailsComponent,
     CarDetailsComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    ColorDirective
   ],
   imports: [
     MatIconModule,

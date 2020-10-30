@@ -37,10 +37,9 @@ i:hover{
     color: #fff;
     line-height: normal;
 }
-.cancel:hover{
-    background-color:#fff ;
-    border: 2px solid #673ab7;
-    color: #673ab7;
+.disabled {
+    pointer-events: none;
+    opacity: 0.6;
 }
 .cancel:focus{
     -webkit-box-shadow: 0px 0px 9px 1px rgba(103,58,183,1);

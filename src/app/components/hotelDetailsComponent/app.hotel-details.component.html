@@ -5,7 +5,7 @@
     <h2 class="end-date"> Check out on {{tripDetails.hotelInfo.endDate}} </h2>
 </div>
 <div class="hotel-booking-details">
-    <button mat-raised-button (click)="confirmDialog()" class="cancel"> Cancel </button>
+    <button mat-raised-button (click)="confirmDialog()" setColor class="cancel" [class.disabled]="isDisabled"> Cancel </button>
     <h2>Confirmation Id <i class="material-icons md-24">horizontal_rule</i> {{tripDetails.hotelBookingId}}</h2>
     <h2> Status : <span [style.color]="hotelStatusColor">{{tripDetails.hotelInfo.status}}</span> </h2>
     <i *ngIf="!expanded" class="material-icons md-24 hotel-expand-more" (click)="expandMore(tripDetails.hotelBookingId)">expand_more</i>
