@@ -2,9 +2,9 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { IFlight } from './flight.reducer';
 
-const getProductFeatureState = createFeatureSelector<IFlight>('products');
+const getFlightFeatureState = createFeatureSelector<IFlight>('flight');
 
-export const getShowProductCode = createSelector(
-    getProductFeatureState,
+export const getShowFlightCode = createSelector(
+    getFlightFeatureState,
     state => state.showFlightCode
 );

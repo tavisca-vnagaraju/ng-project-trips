@@ -6,8 +6,8 @@ import { ActivatedRoute } from '@angular/router';
 import { ConfirmDialogComponent , ConfirmDialogModel } from '../confirmDialogCommponent/confirm-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
-import * as FlightActions from '../../ngrx/state/flight.action';
-import {  getShowProductCode } from '../../ngrx/state/flight.selector';
+import * as FlightActions from '../../ngrx/state/flight/flight.action';
+import {  getShowFlightCode } from '../../ngrx/state/flight/flight.selector';
 @Component({
   selector: 'app-flight-details-component',
   templateUrl: './app.flight-details.component.html',
@@ -29,12 +29,9 @@ export class FlightDetailsComponent {
     if(this.tripDetails.isFlightBooked){
       this.getFlightBookingDetailsById(this.tripDetails.flightBookingId);
     }
-    this.store.select('flight').subscribe(
-      flight => {
-        if (flight) {
-          this.displayCode = flight.showFlightCode;
-      }
-    });
+    this.store.select(getShowFlightCode).subscribe(
+      showFlightCode => this.displayCode = showFlightCode
+    );
   }
   ngAfterContentChecked(){
     if(this.tripDetails){
@@ -89,6 +86,6 @@ export class FlightDetailsComponent {
     }
   }
   checkChanged(): void {
-    this.store.dispatch(FlightActions.toggleProductCode());
+    this.store.dispatch(FlightActions.toggleFlightCode());
   }
 }

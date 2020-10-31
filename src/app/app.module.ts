@@ -34,7 +34,7 @@ import { ColorDirective } from './directives/app.color.directive';
 
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
-import { flightReducer } from './ngrx/state/flight.reducer';
+import { flightReducer } from './ngrx/state/flight/flight.reducer';
 
 @NgModule({
   declarations: [

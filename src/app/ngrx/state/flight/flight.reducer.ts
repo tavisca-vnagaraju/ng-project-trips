@@ -10,7 +10,7 @@ export const initialState: IFlight = {
 
 export const flightReducer = createReducer<IFlight>(
   initialState,
-  on(FlightActions.toggleProductCode, (state):IFlight =>{
+  on(FlightActions.toggleFlightCode, (state):IFlight =>{
     return{
       ...state,
       showFlightCode: !state.showFlightCode
