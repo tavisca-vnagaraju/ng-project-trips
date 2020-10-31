@@ -1,23 +1,28 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { APIService } from 'src/app/services/app.APIService.service';
+
+import { TripsService } from 'src/app/services/app.trips.service';
 import { TripDetails } from '../../models/app.trip-details.model';
+
 @Component({
   selector: 'app-trip-details-component',
   templateUrl: './app.trip-details.component.html',
   styleUrls: ['./app.trip-details.component.css']
 })
+
 export class TripsDetailsComponent {
   id:any;
   tripDetails:TripDetails;
   errorResponse:any;
   color:string;
   flightStatusColor:string;
-  constructor(private apiService:APIService,private route: ActivatedRoute) {}
+
+  constructor(private tripsService:TripsService,private route: ActivatedRoute) {}
+
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.id = params['id'];
-      this.apiService.getTripDetailsById(this.id).subscribe(
+      this.tripsService.getTripDetailsById(this.id).subscribe(
         (data:TripDetails)=> {
           this.tripDetails = data;
         },
@@ -25,9 +30,9 @@ export class TripsDetailsComponent {
       );
     });
   }
+
   ngAfterContentChecked(){
     if(this.tripDetails){
-      // this.getFlightBookingDetailsById(this.tripDetails.flightBookingId);
       if(this.tripDetails.status == "Booked"){
         this.color = "green";
       }else {
@@ -35,7 +40,9 @@ export class TripsDetailsComponent {
       }
     }
   }
+
   updateTripDetails(updatedTripDetails){
     this.tripDetails = updatedTripDetails;
   }
+  
 }

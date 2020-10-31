@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
-import { APIService } from '../../services/app.APIService.service';
+import { Store } from '@ngrx/store';
+
 import { UserInfo } from '../../models/app.userInfo.model';
 import {AUTH0_PARAMS,AUTH0_APIS} from '../../../environments/environment';
-import { Store } from '@ngrx/store';
 import { getToken } from '../../ngrx/state/login/login.selector';
+import { LoginService } from 'src/app/services/app.login.service';
+
 @Component({
   selector: 'app-header',
   templateUrl: './app.header.component.html',
@@ -14,7 +16,9 @@ export class AppHeaderComponent {
   userInfo:UserInfo;
   requestParams:string;
   errorResponse:any;
-  constructor(private apiService:APIService,private store: Store<any>){}
+
+  constructor(private loginService:LoginService,private store: Store<any>){}
+  
   ngOnInit(){
     this.store.select(getToken).subscribe(
       accessToken => {
@@ -22,7 +26,7 @@ export class AppHeaderComponent {
             this.callUserInfoAPI(accessToken)
           }
           else{
-            if(this.apiService.loggedIn() && (this.userInfo == null || this.userInfo == undefined) ){
+            if(this.loginService.loggedIn() && (this.userInfo == null || this.userInfo == undefined) ){
               let access_token = localStorage.getItem('tok');
               this.callUserInfoAPI(access_token);
             }
@@ -30,13 +34,15 @@ export class AppHeaderComponent {
       }
     );
   }
+
   callUserInfoAPI(accessToken){
     this.requestParams = "access_token="+accessToken+"&" + AUTH0_PARAMS.SCOPE;
-    this.apiService.getUserInfoAPI(this.requestParams).subscribe(
+    this.loginService.getUserInfoAPI(this.requestParams).subscribe(
       (user:UserInfo) =>  this.userInfo = user,
       (error) => this.errorResponse = error
     )
   }
+  
   logout(){
     localStorage.clear();
     window.location.href=AUTH0_APIS.DOMAIN_LINK + AUTH0_APIS.LOGOUT + "?" +AUTH0_PARAMS.CLIENT_ID+ "&"+ AUTH0_PARAMS.LOGOUT_RETURN_TO_URI;
