@@ -5,7 +5,9 @@ import { APIService } from 'src/app/services/app.APIService.service';
 import { ActivatedRoute } from '@angular/router';
 import { ConfirmDialogComponent , ConfirmDialogModel } from '../confirmDialogCommponent/confirm-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
-
+import { Store } from '@ngrx/store';
+import * as FlightActions from '../../ngrx/state/flight.action';
+import {  getShowProductCode } from '../../ngrx/state/flight.selector';
 @Component({
   selector: 'app-flight-details-component',
   templateUrl: './app.flight-details.component.html',
@@ -19,13 +21,20 @@ export class FlightDetailsComponent {
   flightStatusColor:string;
   expanded:boolean = true;
   errorResponse:any;
-  constructor(private apiService:APIService,private route: ActivatedRoute,public dialog: MatDialog) {
+  displayCode: boolean = false;
+  constructor(private store: Store<any>,private apiService:APIService,private route: ActivatedRoute,public dialog: MatDialog) {
     
   }
   ngOnInit(){
     if(this.tripDetails.isFlightBooked){
       this.getFlightBookingDetailsById(this.tripDetails.flightBookingId);
     }
+    this.store.select('flight').subscribe(
+      flight => {
+        if (flight) {
+          this.displayCode = flight.showFlightCode;
+      }
+    });
   }
   ngAfterContentChecked(){
     if(this.tripDetails){
@@ -78,5 +87,8 @@ export class FlightDetailsComponent {
         }
       )
     }
+  }
+  checkChanged(): void {
+    this.store.dispatch(FlightActions.toggleProductCode());
   }
 }

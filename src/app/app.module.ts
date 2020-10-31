@@ -1,7 +1,6 @@
 //modules start
 import { NgModule , CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import {FormsModule} from '@angular/forms';
-import { AuthModule } from '@auth0/auth0-angular';
 import { MatIconModule } from '@angular/material/icon';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
@@ -30,9 +29,12 @@ import { CarDetailsComponent } from './components/carDetailsComponent/app.car-de
 import { ConfirmDialogComponent } from './components/confirmDialogCommponent/confirm-dialog.component';
 //components imports end
 
-import { AUTH_CONFIG } from 'src/environments/environment';
 import  { AuthGuard } from './auth.guard';
 import { ColorDirective } from './directives/app.color.directive';
+
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
+import { StoreModule } from '@ngrx/store';
+import { flightReducer } from './ngrx/state/flight.reducer';
 
 @NgModule({
   declarations: [
@@ -62,11 +64,11 @@ import { ColorDirective } from './directives/app.color.directive';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-
-    // Import the module into the application, with configuration
-    AuthModule.forRoot({
-      domain: AUTH_CONFIG.DOMAIN,
-      clientId: AUTH_CONFIG.CLIENT_ID
+    StoreModule.forRoot({}),
+    StoreModule.forFeature('flight', flightReducer),
+    StoreDevtoolsModule.instrument({
+      name:"Booking Manager",
+      maxAge:40,
     }),
   ],
   providers: [AuthGuard],

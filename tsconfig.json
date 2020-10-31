@@ -1,6 +1,6 @@
 {
   "compileOnSave": false,
-  "enableIvy": false,
+  "enableIvy": true,
   "compilerOptions": {
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
