@@ -35,7 +35,7 @@ import { ColorDirective } from './directives/app.color.directive';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
 import { flightReducer } from './ngrx/state/flight/flight.reducer';
-
+import {loginReducer} from './ngrx/state/login/login.reducer';
 @NgModule({
   declarations: [
     Loading,
@@ -66,6 +66,7 @@ import { flightReducer } from './ngrx/state/flight/flight.reducer';
     BrowserAnimationsModule,
     StoreModule.forRoot({}),
     StoreModule.forFeature('flight', flightReducer),
+    StoreModule.forFeature('login', loginReducer),
     StoreDevtoolsModule.instrument({
       name:"Booking Manager",
       maxAge:40,

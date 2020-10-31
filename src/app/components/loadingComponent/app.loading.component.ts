@@ -1,7 +1,8 @@
 import { Component} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {APIService} from '../../services/app.APIService.service';
-import {UserInfo} from '../../models/app.userInfo.model';
+import { Store } from '@ngrx/store';
+import * as LoginActions from '../../ngrx/state/login/login.action';
 @Component({
     selector: 'app-loading-component',
     templateUrl: './app.loading.component.html',
@@ -9,9 +10,14 @@ import {UserInfo} from '../../models/app.userInfo.model';
 
 export class Loading{
     queryParams:any;
-    constructor(private route: ActivatedRoute,private apiService:APIService,private router:Router) {
+    constructor(private route: ActivatedRoute,
+        private apiService:APIService,
+        private router:Router,
+        private store: Store<any>
+    ) {
         this.queryParams = this.getQueryParams();
         this.apiService.setStorage(this.queryParams.access_token);
+        this.store.dispatch(LoginActions.setAccessToken({token:this.queryParams.access_token}));
         //this.queryParamString = this.route.snapshot.fragment;
     }
     ngOnInit(){

@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { APIService } from '../../services/app.APIService.service';
 import { UserInfo } from '../../models/app.userInfo.model';
 import {AUTH0_PARAMS,AUTH0_APIS} from '../../../environments/environment';
-import { Router } from '@angular/router';
-
+import { Store } from '@ngrx/store';
+import { getToken } from '../../ngrx/state/login/login.selector';
 @Component({
   selector: 'app-header',
   templateUrl: './app.header.component.html',
@@ -14,16 +14,28 @@ export class AppHeaderComponent {
   userInfo:UserInfo;
   requestParams:string;
   errorResponse:any;
-  constructor(private apiService:APIService,private router:Router){}
-  ngAfterContentChecked(){
-    if(this.apiService.loggedIn() && this.userInfo == null){
-      let access_token = localStorage.getItem('tok');
-      this.requestParams = "access_token="+access_token+"&" + AUTH0_PARAMS.SCOPE;
-      this.apiService.getUserInfoAPI(this.requestParams).subscribe(
-        (user:UserInfo) =>  this.userInfo = user,
-        (error) => this.errorResponse = error
-      )
-    }
+  constructor(private apiService:APIService,private store: Store<any>){}
+  ngOnInit(){
+    this.store.select(getToken).subscribe(
+      accessToken => {
+          if(accessToken != ""){
+            this.callUserInfoAPI(accessToken)
+          }
+          else{
+            if(this.apiService.loggedIn() && (this.userInfo == null || this.userInfo == undefined) ){
+              let access_token = localStorage.getItem('tok');
+              this.callUserInfoAPI(access_token);
+            }
+          }
+      }
+    );
+  }
+  callUserInfoAPI(accessToken){
+    this.requestParams = "access_token="+accessToken+"&" + AUTH0_PARAMS.SCOPE;
+    this.apiService.getUserInfoAPI(this.requestParams).subscribe(
+      (user:UserInfo) =>  this.userInfo = user,
+      (error) => this.errorResponse = error
+    )
   }
   logout(){
     localStorage.clear();
