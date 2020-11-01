@@ -9,6 +9,7 @@ const tripDetailsRouter = require('./routes/tripDetailsRoutes.js');
 const flightBookingDetailsRouter = require('./routes/flightBookingDetailsRoutes.js');
 const hotelBookingDetailsRouter = require('./routes/hotelBookingDetailsRoutes.js');
 const carBookingDetailsRouter = require('./routes/carBookingDetailsRoutes.js');
+const userProfileRouter = require('./routes/userProfileRoutes.js');
 require('dotenv').config();
 const app = express();
 app.use(cors());
@@ -31,5 +32,6 @@ app.use(flightBookingDetailsRouter);
 app.use(hotelBookingDetailsRouter);
 app.use(carBookingDetailsRouter);
 app.use(tripDetailsRouter);
+app.use(userProfileRouter);
 
 app.listen(3001, () => { console.log('http://localhost:3001') });
