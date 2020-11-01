@@ -9,6 +9,10 @@ import { TripsListComponent } from './components/Trips List Component/app.trips-
 
 const routes: Routes = [
   { path: '', redirectTo: 'login' ,  pathMatch: 'full'},
+  {
+    path: 'user',
+    loadChildren: () => import('./feature/feature.module').then(m => m.FeatureModule)
+  },
   { path: 'login', component: LoginComponent },
   { path: 'tripsList', component: TripsListComponent , canActivate:[AuthGuard]},
   { path: 'trip/details/:id', component: TripsDetailsComponent, canActivate:[AuthGuard]},

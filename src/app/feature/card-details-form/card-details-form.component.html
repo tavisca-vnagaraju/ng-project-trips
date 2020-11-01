@@ -1,0 +1,50 @@
+<form name="address" class="card-details-form">
+    <h1 class="text-center"> Update Card Details  </h1>
+    <div class="row display-flex">
+        <div class="form-group">
+            <label for="CardNumber">Card Number with no dashes</label>
+            <input name="CardNumber" id="CardNumber" [(ngModel)]="cardDetails.CardNumber" name="CardNumber" class="form-control" type="text" autocomplete="nope"
+            required minlength="13" maxlength="13" #CardNumber="ngModel" (keydown)="validateNumber($event)">
+            <div *ngIf="CardNumber.invalid && (CardNumber.dirty || CardNumber.touched)">
+                <div *ngIf="CardNumber.errors.required">
+                    CardNumber number is required.
+                </div>
+                <div *ngIf="CardNumber.errors.minlength || CardNumber.errors.maxlength">
+                    CardNumber must be  13 characters long.
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="name">CVV</label>
+            <input  class="form-control" type="text"  autocomplete="nope" maxlength="3" (keydown)="validateNumber($event)">
+        </div>
+    </div>
+    <div class="row display-flex">
+        <div class="form-group">
+            <label for="CardHolderName">Card holder Name (As It Appears On Card)</label>
+            <input name="CardHolderName" id="CardHolderName" [(ngModel)]="cardDetails.CardHolderName" name="CardHolderName" class="form-control" type="text"  autocomplete="nope"
+            required minlength="4"  #CardHolderName="ngModel">
+            <div *ngIf="CardHolderName.invalid && (CardHolderName.dirty || CardHolderName.touched)">
+                <div *ngIf="CardHolderName.errors.required">
+                    Card Holder Name number is required.
+                </div>
+                <div *ngIf="CardHolderName.errors.minlength || CardHolderName.errors.maxlength">
+                    Card Holder Name must be at least 4 characters long.
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="ExpirationMonth">Expiration Month</label>
+            <select class="form-control" name="ExpirationMonth" id="ExpirationMonth" (change)="selectedMonth($event)">
+                <option class="form-control" *ngFor="let month of months;" [value]="month"> {{month}} </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="ExpirationYear">Expiration Year</label>
+            <select class="form-control" name="ExpirationYear" id="ExpirationYear" (change)="selectedYear($event)">
+                <option class="form-control" *ngFor="let a of years; let index = index" [value]="index+2020"> {{ index +2020 }} </option>
+            </select>
+        </div>
+    </div>
+    <button [disabled]="!(CardNumber.valid && CardHolderName.valid)" (click)="submitCard()" class="form-group" mat-raised-button color="primary">Save</button>
+</form>

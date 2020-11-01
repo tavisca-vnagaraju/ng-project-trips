@@ -10,6 +10,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FeatureModule } from './feature/feature.module';
 //modules end
 import './lit-elements/app.MyElement.litelement';
 import './lit-elements/app.footer.litelement';
@@ -64,6 +65,7 @@ import {loginReducer} from './ngrx/state/login/login.reducer';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    FeatureModule,
     StoreModule.forRoot({}),
     StoreModule.forFeature('flight', flightReducer),
     StoreModule.forFeature('login', loginReducer),
