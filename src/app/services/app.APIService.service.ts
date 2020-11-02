@@ -18,4 +18,10 @@ export class APIService {
   loggedIn(){
     return !!localStorage.getItem('tok');
   }
+  getAllTrips(){
+    let resp:any;
+    this.url = "http://localhost:3001/trips";
+    resp = this.http.get<any>(this.url);
+    return resp;
+  }
 }
