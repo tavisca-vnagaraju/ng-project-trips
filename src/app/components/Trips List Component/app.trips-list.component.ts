@@ -11,7 +11,7 @@ import {TripsList} from '../../models/app.trips-list.model';
 })
 
 export class TripsListComponent {
-  
+  title = "Trips List";
   trips:TripsList;
   errorResponse:any;
 

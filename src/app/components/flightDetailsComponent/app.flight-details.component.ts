@@ -18,6 +18,7 @@ import {  getShowFlightCode } from '../../ngrx/state/flight/flight.selector';
 
 export class FlightDetailsComponent {
   isDisabled:boolean = false;
+  title:string = "Flight Details";
   @Input() tripDetails: TripDetails;
   @Output() onCancelTripDetailsEvent = new EventEmitter<TripDetails>();
   flightBookingDetails:FlightBookingDetails;

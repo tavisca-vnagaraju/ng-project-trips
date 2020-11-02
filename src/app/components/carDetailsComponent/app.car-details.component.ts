@@ -14,6 +14,7 @@ import { CarService } from 'src/app/services/app.car.service';
 
 export class CarDetailsComponent {
   isDisabled:boolean = false;
+  title:string = "Car Details";
   @Input() tripDetails: TripDetails;
   @Output() onCancelTripDetailsEvent = new EventEmitter<TripDetails>();
   carBookingDetails:CarBookingDetails;

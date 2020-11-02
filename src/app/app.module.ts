@@ -1,5 +1,5 @@
 //modules start
-import { NgModule , CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule , CUSTOM_ELEMENTS_SCHEMA, Injector } from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { AppRoutingModule } from './app-routing.module';
@@ -14,6 +14,7 @@ import { FeatureModule } from './feature/feature.module';
 //modules end
 import './lit-elements/app.MyElement.litelement';
 import './lit-elements/app.footer.litelement';
+import {HeadingElement} from './ng-element/app.heading.element';
 //components imports start
 import { AppComponent } from './app.component';
 import { Loading } from './components/loadingComponent/app.loading.component';
@@ -37,6 +38,7 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
 import { flightReducer } from './ngrx/state/flight/flight.reducer';
 import {loginReducer} from './ngrx/state/login/login.reducer';
+import { createCustomElement } from '@angular/elements';
 @NgModule({
   declarations: [
     Loading,
@@ -52,7 +54,8 @@ import {loginReducer} from './ngrx/state/login/login.reducer';
     HotelDetailsComponent,
     CarDetailsComponent,
     ConfirmDialogComponent,
-    ColorDirective
+    ColorDirective,
+    HeadingElement
   ],
   imports: [
     MatIconModule,
@@ -76,7 +79,12 @@ import {loginReducer} from './ngrx/state/login/login.reducer';
   ],
   providers: [AuthGuard],
   schemas:[CUSTOM_ELEMENTS_SCHEMA],
-  entryComponents: [ConfirmDialogComponent],
+  entryComponents: [ConfirmDialogComponent,HeadingElement],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(private injector:Injector){
+    const headingElement = createCustomElement(HeadingElement,{injector:this.injector});
+    customElements.define('heading-element',headingElement);
+  }
+}

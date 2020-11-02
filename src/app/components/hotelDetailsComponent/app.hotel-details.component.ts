@@ -14,6 +14,7 @@ import { HotelService } from 'src/app/services/app.hotel.service';
 
 export class HotelDetailsComponent {
   isDisabled:boolean = false;
+  title:string = "Hotel Details";
   @Input() tripDetails: TripDetails;
   @Output() onCancelTripDetailsEvent = new EventEmitter<TripDetails>();
   hotelBookingDetails:HotelBookingDetails;
