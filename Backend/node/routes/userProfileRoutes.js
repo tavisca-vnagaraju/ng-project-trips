@@ -4,24 +4,24 @@ const userAddressModel = require('../models/userAddressModel');
 const userCardModel = require('../models/userCardModel');
 const app = express();
 
-app.get('/user/profile/', async (req, res) => {
-    const user_profile = await userProfileModel.findOne({email:req.body.email});
+app.get('/user/profile/:email', async (req, res) => {
+    const user_profile = await userProfileModel.findOne({email:req.params.email});
     try {
       res.send(user_profile);
     } catch (err) {
       res.status(500).send(err);
     }
 });
-app.get('/user/address/', async (req, res) => {
-    const user_address = await userAddressModel.findOne({email:req.body.email});
+app.get('/user/address/:email', async (req, res) => {
+    const user_address = await userAddressModel.findOne({email:req.params.email});
     try {
       res.send(user_address);
     } catch (err) {
       res.status(500).send(err);
     }
 });
-app.get('/user/card/', async (req, res) => {
-    const user_card = await userCardModel.findOne({email:req.body.email});
+app.get('/user/card/:email', async (req, res) => {
+    const user_card = await userCardModel.findOne({email:req.params.email});
     try {
       res.send(user_card);
     } catch (err) {

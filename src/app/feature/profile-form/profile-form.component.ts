@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Profile } from '../models/profile';
+import { ProfileService } from '../services/profile.service';
 import {CustomValidator} from './app.custom.validator';
 
 @Component({
@@ -10,7 +12,8 @@ import {CustomValidator} from './app.custom.validator';
 })
 export class ProfileFormComponent implements OnInit {
   frmProduct: FormGroup;
-  constructor() { 
+  @Input() profile: Profile;
+  constructor(private profileService:ProfileService,private router:Router) { 
     this.profile = new Profile("","","",null,"","");
     this.frmProduct = new FormGroup({
       phone : new FormControl(this.profile.phone,
@@ -30,13 +33,18 @@ export class ProfileFormComponent implements OnInit {
       )
     });
   }
-  @Input() profile: Profile;
+  
   ngOnInit(): void {
   }
-  submitProfile(){
-    console.log(this.profile);
-  }
   save(){
-    console.log(this.frmProduct.value);
+    this.profile.DOB = this.frmProduct.value.DOB;
+    this.profile.gender = this.frmProduct.value.gender;
+    this.profile.phone = this.frmProduct.value.phone;
+    this.profileService.postProfile(this.profile).subscribe(
+      data => {
+        console.log(data);
+        this.router.navigate(["/user/profile"]);
+      }
+    )
   }
 }

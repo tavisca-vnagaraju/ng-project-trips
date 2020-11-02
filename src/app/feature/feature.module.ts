@@ -9,12 +9,14 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import { AddressFormComponent } from './address-form/address-form.component';
 import { CardDetailsFormComponent } from './card-details-form/card-details-form.component';
+import { UserProfileEditComponent } from './user-profile-edit/user-profile-edit.component';
 @NgModule({
   declarations: [
     UserProfileInfoComponent,
     ProfileFormComponent,
     AddressFormComponent,
-    CardDetailsFormComponent
+    CardDetailsFormComponent,
+    UserProfileEditComponent
   ],
   schemas:[CUSTOM_ELEMENTS_SCHEMA],
   imports: [

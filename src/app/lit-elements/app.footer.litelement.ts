@@ -18,7 +18,7 @@ class LitFooter extends LitElement {
             background-color: #673ab7;
             width: 100%;
             position: fixed;
-            bottom:0px;
+            bottom:-10px;
         }
         .footer-text{
             text-align:center;

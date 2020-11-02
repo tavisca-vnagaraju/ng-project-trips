@@ -1,5 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Address } from '../models/address';
+import { Profile } from '../models/profile';
+import { ProfileService } from '../services/profile.service';
 
 @Component({
   selector: 'app-address-form',
@@ -7,15 +10,21 @@ import { Address } from '../models/address';
   styleUrls: ['./address-form.component.css']
 })
 export class AddressFormComponent implements OnInit {
-
+  @Input() profile: Profile;
   address: Address;
-  constructor() { 
-    this.address = new Address("","","","","","");
+  constructor(private profileService:ProfileService,private router:Router) { 
+    this.address = new Address("","","","","","","");
   }
   ngOnInit(): void {
   }
   submitAddress(){
-    console.log(this.address);
+    this.address.email = this.profile.email;
+    this.profileService.postAddress(this.address).subscribe(
+      data =>{
+        console.log(data);
+        this.router.navigate(["/user/profile"]);
+      }
+    )
   }
   validateNumber(event) {
     //to prevent entering alphabets

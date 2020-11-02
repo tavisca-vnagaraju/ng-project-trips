@@ -3,7 +3,7 @@ const UserCardModelSchema = new mongoose.Schema({
     "email":String,
     "CardNumber":String,
     "CardHolderName":String,
-    "ExpirationMonth":Number,
+    "ExpirationMonth":String,
     "ExpirationYear":Number
 });
 const UserCardModel = mongoose.model("UserCardModel", UserCardModelSchema,"user_card_details");

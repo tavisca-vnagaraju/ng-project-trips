@@ -1,5 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CardDetails } from '../models/card-details';
+import { Profile } from '../models/profile';
+import { ProfileService } from '../services/profile.service';
 
 @Component({
   selector: 'app-card-details-form',
@@ -10,8 +13,9 @@ export class CardDetailsFormComponent implements OnInit {
   cardDetails: CardDetails;
   months:Array<string>;
   years:Array<string>;
-  constructor() { 
-      this.cardDetails = new CardDetails("","",0,2020);
+  @Input() profile: Profile;
+  constructor(private profileService:ProfileService,private router:Router) { 
+      this.cardDetails = new CardDetails("","","","January",2020);
       this.months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
       this.years = new Array(11);
   }
@@ -24,7 +28,13 @@ export class CardDetailsFormComponent implements OnInit {
     this.cardDetails.ExpirationYear = event.target.value;
   }
   submitCard(){
-    console.log(this.cardDetails);
+    this.cardDetails.email = this.profile.email;
+    this.profileService.postCardDetails(this.cardDetails).subscribe(
+      data =>{
+        console.log(data);
+        this.router.navigate(["/user/profile"]);
+      }
+    )
   }
   validateNumber(event) {
     //to prevent entering alphabets
