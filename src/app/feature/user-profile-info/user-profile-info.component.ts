@@ -19,8 +19,6 @@ export class UserProfileInfoComponent implements OnInit {
   cardDetails:CardDetails;
   constructor(private loginService:LoginService,private profileService:ProfileService) { 
     this.profile = new Profile("","","",null,"","");
-    this.address = new Address("","","","","","","");
-    this.cardDetails = new CardDetails("","","","",0);
   }
 
   ngOnInit(): void {

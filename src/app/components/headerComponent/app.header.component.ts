@@ -41,9 +41,14 @@ export class AppHeaderComponent {
     this.loginService.getUserInfoAPI(this.requestParams).subscribe(
       (user:UserInfo) =>  {
         this.userInfo = user;
-        
       },
-      (error) => this.errorResponse = error
+      (error) => {
+        this.errorResponse = error;
+        if(error!=null){
+          localStorage.clear();
+          this.route.navigate(['/login'])
+        }
+      }
     )
   }
   

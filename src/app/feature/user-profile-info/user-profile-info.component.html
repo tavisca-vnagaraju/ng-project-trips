@@ -1,7 +1,7 @@
 <a routerLink="/user/profile/edit" routerLinkActive="active" >
     <button class="form-group" mat-raised-button color="primary">Edit profile</button>
 </a>
-<div class="container">
+<div class="container" *ngIf="profile">
     <h1 class="text-center"> User Profile </h1>
     <div class="display-flex">
         <div class="form-group">
@@ -17,13 +17,13 @@
             <p class="form-control"> {{profile.nickname}}</p>
         </div>
     </div>
-    <div class="display-flex">
+    <div class="display-flex" *ngIf="profile.phone != ''">
         <div class="form-group">
             <label for="phone">Phone</label>
             <p class="form-control"> {{profile.phone}}</p>
         </div>
         <div class="form-group">
-            <label for="phone">Phone</label>
+            <label for="phone">DOB</label>
             <p class="form-control"> {{profile.DOB | date :'mediumDate'}}</p>
         </div>
         <div class="form-group">
@@ -32,7 +32,7 @@
         </div>
     </div>
 </div>
-<div class="container">
+<div class="container" *ngIf="address">
     <h1 class="text-center"> User Address </h1>
     <div class="display-flex">
         <div class="form-group">
@@ -63,7 +63,7 @@
         </div>
     </div>
 </div>
-<div class="container">
+<div class="container" *ngIf="cardDetails">
     <h1 class="text-center"> User Card </h1>
     <div class="display-flex">
         <div class="form-group">
