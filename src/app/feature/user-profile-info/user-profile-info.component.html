@@ -1,0 +1,86 @@
+<a routerLink="/user/profile/edit" routerLinkActive="active" >
+    <button class="form-group" mat-raised-button color="primary">Edit profile</button>
+</a>
+<div class="container" *ngIf="profile">
+    <h1 class="text-center"> User Profile </h1>
+    <div class="display-flex">
+        <div class="form-group">
+            <label for="email">Email</label>
+            <p class="form-control"> {{profile.email}} </p>
+        </div>
+        <div class="form-group">
+            <label for="name">Name</label>
+            <p class="form-control"> {{profile.name}}</p>
+        </div>
+        <div class="form-group">
+            <label for="nickname">Nick Name</label>
+            <p class="form-control"> {{profile.nickname}}</p>
+        </div>
+    </div>
+    <div class="display-flex" *ngIf="profile.phone != ''">
+        <div class="form-group">
+            <label for="phone">Phone</label>
+            <p class="form-control"> {{profile.phone}}</p>
+        </div>
+        <div class="form-group">
+            <label for="phone">DOB</label>
+            <p class="form-control"> {{profile.DOB | date :'mediumDate'}}</p>
+        </div>
+        <div class="form-group">
+            <label for="phone">Gender</label>
+            <p class="form-control"> {{profile.gender}}</p>
+        </div>
+    </div>
+</div>
+<div class="container" *ngIf="address">
+    <h1 class="text-center"> User Address </h1>
+    <div class="display-flex">
+        <div class="form-group">
+            <label for="email">Address Line 1</label>
+            <p class="form-control">{{address.addressLine1}}</p>
+        </div>
+        <div class="form-group">
+            <label for="name">Address Line 2</label>
+            <p class="form-control">{{address.addressLine2}}</p>
+        </div>
+    </div>
+    <div class="display-flex">
+        <div class="form-group">
+            <label for="nickname">City</label>
+            <p class="form-control">{{address.city}}</p>
+        </div>
+        <div class="form-group">
+            <label for="phone">State</label>
+            <p class="form-control">{{address.state}}</p>
+        </div>
+        <div class="form-group">
+            <label for="phone">Country</label>
+            <p class="form-control">{{address.country}}</p>
+        </div>
+        <div class="form-group">
+            <label for="phone">Zip</label>
+            <p class="form-control">{{address.zip}}</p>
+        </div>
+    </div>
+</div>
+<div class="container" *ngIf="cardDetails">
+    <h1 class="text-center"> User Card </h1>
+    <div class="display-flex">
+        <div class="form-group">
+            <label for="email">Card Number</label>
+            <p class="form-control"> {{cardDetails.CardNumber}} </p>
+        </div>
+        <div class="form-group">
+            <label for="name">Card Holder Name</label>
+            <p class="form-control"> {{cardDetails.CardHolderName}} </p>
+        </div>
+        <div class="form-group">
+            <label for="nickname">Expiration Month</label>
+            <p class="form-control"> {{cardDetails.ExpirationMonth}} </p>
+        </div>
+        <div class="form-group">
+            <label for="phone">Expiration Year</label>
+            <p class="form-control"> {{cardDetails.ExpirationYear}} </p>
+        </div>
+    </div>
+</div>

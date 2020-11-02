@@ -1,16 +1,28 @@
 import { Component } from '@angular/core';
-import { APIService } from 'src/app/services/app.APIService.service';
+import { Router } from '@angular/router';
+
+import { TripsService } from 'src/app/services/app.trips.service';
 import {TripsList} from '../../models/app.trips-list.model';
+
 @Component({
   selector: 'app-trips-list-component',
   templateUrl: './app.trips-list.component.html',
   styleUrls: ['./app.trips-list.component.css']
 })
+
 export class TripsListComponent {
+  title = "Trips List";
   trips:TripsList;
-  constructor(private apiService:APIService){
-    this.apiService.getAllTrips().subscribe(
-      x => this.trips = x
+  errorResponse:any;
+
+  constructor(private tripsService:TripsService,private router:Router){
+    this.tripsService.getAllTrips().subscribe(
+      (data:TripsList) => this.trips = data,
+      (error) => this.errorResponse = error
     );
+  }
+
+  cardClicked(tripId):void{
+    this.router.navigate(['/trip/details',tripId]);
   }
 }

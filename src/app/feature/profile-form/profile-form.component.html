@@ -1,0 +1,55 @@
+<form name="profile" class="profile-form" name="frmProduct" [formGroup]="frmProduct" (ngSubmit)="save()">
+    <h1 class="text-center"> Update Profile </h1>
+    <div class="filled-form display-flex">
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input  class="form-control" type="text" [value]="profile.email" [disabled]=true>
+        </div>
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input  class="form-control" type="text"  [value]="profile.name" [disabled]=true>
+        </div>
+        <div class="form-group">
+            <label for="nickname">Nick Name</label>
+            <input  class="form-control" type="text"  [value]="profile.nickname" [disabled]=true>
+        </div>
+    </div>
+    <div class="to-fill-form display-flex">
+        <div class="form-group">
+            <label for="phone">Phone</label>
+            <input id="phone" name="phone" [value]="profile.phone" formControlName="phone" class="form-control" type="text" autocomplete="nope">
+            <div *ngIf="frmProduct.controls.phone.dirty && !frmProduct.controls.phone.valid">
+                <p *ngIf="frmProduct.controls.phone.errors.pattern">phone must be numeric</p>
+                <p *ngIf="frmProduct.controls.phone.errors.required">phone is required</p>
+                <p *ngIf="frmProduct.controls.phone.errors.minlength">phone is min 10 dights</p>
+                <p *ngIf="frmProduct.controls.phone.errors.maxlength">phone can be max 10 digits</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <mat-form-field appearance="fill">
+                <mat-label for="DOB">DOB</mat-label>
+                <div class="display-flex">
+                    <input id="DOB" name="DOB" class="form-control" type="text" autocomplete="nope" matInput [matDatepicker]="picker" [value]="profile.DOB" formControlName="DOB">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                </div>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>  
+              <div *ngIf="frmProduct.controls.DOB.dirty && !frmProduct.controls.DOB.valid">
+                <p *ngIf="frmProduct.controls.DOB.errors.required">DOB is required</p>
+                <p *ngIf="!frmProduct.controls.DOB.errors.valid">DOB invalied</p>
+            </div>
+        </div>
+    </div>
+    <div class="gender-radio-group form-group">
+        <p> Gender : </p>
+        <div class="gender-male-group">
+            <input id="male" type="radio"  value="male" name="gender" formControlName="gender">
+            <label class="custom-control-label" for="male">Male</label>
+        </div>
+        <div class="gender-female-group">
+            <input id="female" type="radio"  value="female" name="gender" formControlName="gender">
+            <label class="custom-control-label" for="female">Female</label>
+        </div>
+    </div>
+    <button [disabled]="!frmProduct.valid" class="form-group" mat-raised-button color="primary">Update</button>
+</form>

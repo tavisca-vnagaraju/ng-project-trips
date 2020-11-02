@@ -9,7 +9,7 @@
 .userInfo-name{
     font-size: 14px;
 }
-.logout:hover{
+.link-style:hover{
     text-decoration: underline;
     cursor: pointer;
 }

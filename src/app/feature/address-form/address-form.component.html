@@ -1,0 +1,91 @@
+<form name="address" class="address-form">
+    <h1 class="text-center"> Update Address </h1>
+    <div class="row display-flex">
+        <div class="form-group">
+            <label for="address1">Address Line 1</label>
+            <input name="address1" class="form-control" type="text" [(ngModel)]="address.addressLine1" autocomplete="nope"
+            required minlength="5" #address1="ngModel">
+            <div *ngIf="address1.invalid && (address1.dirty || address1.touched)">
+                <div *ngIf="address1.errors.required">
+                    address1 is required.
+                </div>
+                <div *ngIf="address1.errors.minlength ">
+                    address1 must be at least 5 characters long.
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="address2">Address Line 2</label>
+            <input name="address2"  class="form-control" type="text" [(ngModel)]="address.addressLine2" autocomplete="nope"
+            required minlength="5" #address2="ngModel">
+            <div *ngIf="address2.invalid && (address2.dirty || address2.touched)">
+                <div *ngIf="address2.errors.required">
+                    address2 is required.
+                </div>
+                <div *ngIf="address2.errors.minlength ">
+                    address2 must be at least 5 characters long.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row display-flex">
+        <div class="form-group">
+            <label for="city">City</label>
+            <input name="city" class="form-control" type="text" [(ngModel)]="address.city" autocomplete="nope"
+            required minlength="4"  #city="ngModel">
+            <div *ngIf="city.invalid && (city.dirty || city.touched)">
+                <div *ngIf="city.errors.required">
+                    city is required.
+                </div>
+                <div *ngIf="city.errors.minlength ">
+                    city must be at least 4 characters long.
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="state">State</label>
+            <input name="state" class="form-control" type="text" [(ngModel)]="address.state" autocomplete="nope"
+            required minlength="4" maxlength="10" #state="ngModel">
+            <div *ngIf="state.invalid && (state.dirty || state.touched)">
+                <div *ngIf="state.errors.required">
+                    state is required.
+                </div>
+                <div *ngIf="state.errors.minlength ">
+                    state must be at least 4 characters long.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row display-flex">
+        <div class="form-group">
+            <label for="country">Country</label>
+            <input name="country" class="form-control" type="text" [(ngModel)]="address.country" autocomplete="nope"
+            required minlength="4"  #country="ngModel">
+            <div *ngIf="country.invalid && (country.dirty || country.touched)">
+                <div *ngIf="country.errors.required">
+                    country is required.
+                </div>
+                <div *ngIf="country.errors.minlength ">
+                    country must be at least 4 characters long.
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="zip">Zip</label>
+            <input name="zip"  class="form-control" type="text" [(ngModel)]="address.zip" autocomplete="nope"
+            required minlength="6" maxlength="6" #zip="ngModel" (keydown)="validateNumber($event)">
+            <div *ngIf="zip.invalid && (zip.dirty || zip.touched)">
+                <div *ngIf="zip.errors.required">
+                    zip number is required.
+                </div>
+                <div *ngIf="zip.errors.minlength || zip.errors.maxlength">
+                    zip must be  6 characters long.
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="form-group" mat-raised-button color="primary" (click)="submitAddress()"
+        [disabled]="!(zip.valid && country.valid && address2.valid && address1.valid && city.valid && state.valid)">
+        Save
+    </button>
+</form>

@@ -1,0 +1,31 @@
+<div *ngIf="!tripDetails && !errorResponse" class="spinner">
+    <mat-spinner></mat-spinner>
+</div>
+<div *ngIf="errorResponse">
+    <h1> {{errorResponse.message}} </h1>
+</div>
+<div *ngIf="tripDetails" class="trip-details">
+    <a routerLink="/tripsList" routerLinkActive="active">
+        <div class="back-to-trips">
+            <i class="material-icons md-48">arrow_back_ios</i>
+            <span>back to trips</span>
+        </div>
+    </a>
+    <div class="trip-card">
+        <h1><b> Trip Id           - {{tripDetails.id}} </b> </h1>
+        <h2>Status       - <span [style.color]="color"> {{tripDetails.status}} </span> </h2>
+        <div class="flex">
+            <h2 class="booked-date">Booked on  <span > {{tripDetails.bookedDate}} </span> </h2>
+            <h2 class="trip-cost"> Cost        - <span> {{tripDetails.totalCost}} {{tripDetails.currencyCode}} </span> </h2>
+        </div>
+    </div>
+    <div *ngIf="tripDetails.isFlightBooked" class="item-card">
+        <app-flight-details-component [tripDetails]="tripDetails" (onCancelTripDetailsEvent)="updateTripDetails($event)"></app-flight-details-component>
+    </div>
+    <div *ngIf="tripDetails.isHotelBooked" class="item-card">
+        <app-hotel-details-component [tripDetails]="tripDetails" (onCancelTripDetailsEvent)="updateTripDetails($event)"></app-hotel-details-component>
+    </div>
+    <div *ngIf="tripDetails.isCarBooked" class="item-card">
+        <app-car-details-component [tripDetails]="tripDetails" (onCancelTripDetailsEvent)="updateTripDetails($event)"></app-car-details-component>
+    </div>
+</div>

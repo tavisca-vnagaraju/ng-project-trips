@@ -1,11 +1,9 @@
 <div class="text-align-center heading">
     <h3>The Trips Manager</h3>
 </div>
-<a [href]="loginLink">
-    <div class="text-align-center">  
-      <button mat-button style="padding: 1rem;">
-        <mat-icon style="width: 50px; height:30px" svgIcon="logo"></mat-icon> 
-        Login With Google
-      </button>  
-    </div>
-</a>  
+<div class="text-align-center" (click)="loginWithGoogle()">  
+  <button mat-button style="padding: 1rem;">
+    <mat-icon style="width: 50px; height:30px" svgIcon="logo"></mat-icon> 
+    Login With Google
+  </button>  
+</div>

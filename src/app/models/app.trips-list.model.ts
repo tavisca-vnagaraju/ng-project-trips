@@ -1,12 +1,12 @@
 export class TripsList {
     constructor(
-        id:string,
-        status:string,
-        bookedDate:string,
-        startDate:string,
-        endDate:string,
-        cancelledDate:string,
-        totalCost:string,
-        currencyCod:string
+        public id:string,
+        public status:string,
+        public bookedDate:string,
+        public startDate:string,
+        public endDate:string,
+        public cancelledDate:string,
+        public totalCost:string,
+        public currencyCod:string
     ){}
 }

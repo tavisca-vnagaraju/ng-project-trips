@@ -1,8 +1,41 @@
 .heading{
-    color: tomato;
+    text-align: center;
+}
+.trips-heading{
+    margin: 15px;
+    font-size: 20px;
+    display: flex;
+    -webkit-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+}
+.trips-heading p{
+    padding: 15px;
+    margin: 0 auto;
 }
 .trips-card{
-    border : 2px solid grey;
-    margin: 10px;
-    padding: 10px;
+    margin: 15px;
+    font-size: 20px;
+    display: flex;
+    -webkit-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+}
+.trips-card:hover{
+    -webkit-box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.75);
+    cursor: pointer;
+}
+.trips-list{
+    margin: 0 auto;
+    width: 70%;
+}
+.trips-card p{
+    padding: 15px;
+    margin: 0 auto;
+}
+mat-spinner{
+    margin:0 auto;
+    margin-top: 150px;
 }

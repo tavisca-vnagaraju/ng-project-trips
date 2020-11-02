@@ -1,0 +1,48 @@
+.item-card{
+    margin: 10px;
+    padding: 10px;
+    border-top: 2px solid #673ab7;
+}
+.trip-card{
+    margin: 10px;
+    padding: 10px;
+}
+.flex{
+    display: flex;
+}
+.trip-details{
+    -webkit-box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.75);
+    width: 80%;
+    margin: 10px auto;
+    padding: 10px;
+}
+.booked-date span{
+    font-weight: 600;
+}
+.trip-cost{
+    margin-left:auto ;
+}
+i{
+    vertical-align:middle;
+}
+i:hover{
+    font-weight: bold;
+}
+.back-to-trips:hover{
+    text-decoration: underline;
+    cursor: pointer;
+    font-weight: bold;
+}
+.back-to-trips{
+    font-size: 20px;
+    margin: 10px;
+}
+.spinner{
+    font-size: 100px;
+}
+mat-spinner{
+    margin:0 auto;
+    margin-top: 150px;
+}
