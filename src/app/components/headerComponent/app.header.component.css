@@ -3,6 +3,10 @@
     width: 50px;
     border-radius: 25px;
 }
+.mat-toolbar.mat-primary{
+    position: fixed;
+    z-index: 1;
+}
 .user-info{
     margin: 0 0 0 auto;
 }
@@ -12,4 +16,8 @@
 .link-style:hover{
     text-decoration: underline;
     cursor: pointer;
+}
+.header-bottom{
+    margin-bottom: 50px;
+    height: 20px;
 }
