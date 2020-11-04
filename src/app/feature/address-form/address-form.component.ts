@@ -12,6 +12,7 @@ import { ProfileService } from '../services/profile.service';
 export class AddressFormComponent implements OnInit {
   @Input() profile: Profile;
   address: Address;
+  title:string = "Update Address";
   constructor(private profileService:ProfileService,private router:Router) { 
     this.address = new Address("","","","","","","");
   }

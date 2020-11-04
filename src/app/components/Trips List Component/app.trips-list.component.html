@@ -6,17 +6,12 @@
     <h1> {{errorResponse.message}} </h1>
 </div>
 <div class="trips-list" *ngIf="trips">
-    <div class="trips-heading">
-        <p>Id </p>
-        <p>Status</p>
-        <p>Booked Date</p>
-        <p>Cost </p>
-    </div>
-    <div class="trips-card" *ngFor="let trip of trips" (click)="cardClicked(trip.id)">
-        <p>{{trip.id}} </p>
-        <p>{{trip.status}} </p>
-        <p>{{trip.bookedDate}} </p>
-        <p>{{trip.totalCost}} {{trip.currencyCode}} </p>
-        <!-- <p> view itenary </p> -->
+    <div class="trip-card" *ngFor="let trip of trips" (click)="cardClicked(trip.id)">
+        <h1><b> Trip Id - {{trip.id}} </b></h1>
+        <h2>Status - <span [style.color]="color"> {{trip.status}} </span></h2>
+        <div class="flex-container">
+            <h2 class="booked-date">Booked on <span> {{trip.bookedDate}}</span></h2>
+            <h2 class="trip-cost"> Cost - <span> {{trip.totalCost}} {{trip.currencyCode}} </span></h2>
+        </div>
     </div>
 </div>

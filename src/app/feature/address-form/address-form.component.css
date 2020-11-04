@@ -25,13 +25,11 @@
     margin: 5px 25px;
     flex:1;
 }
-.text-center{
-    text-align: center;
-}
 .address-form{
     width: 60%;
     padding: 25px;
-    border-radius: 25px;
+    background-color: #fff;
+    border-radius: 5px;
     margin: 25px auto;
     -webkit-box-shadow: 0px 0px 4px 0px rgba(103,58,183,1);
     -moz-box-shadow: 0px 0px 4px 0px rgba(103,58,183,1);

@@ -12,6 +12,7 @@ import { Profile } from '../models/profile';
 export class UserProfileEditComponent implements OnInit {
   userInfo:UserInfo;
   profile:Profile;
+  title:string = "Edit User Profile";
   constructor(private loginService:LoginService) { 
     this.profile = new Profile("","","",null,"","");
   }

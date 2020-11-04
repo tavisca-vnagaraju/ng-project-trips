@@ -2,7 +2,7 @@
     <button class="form-group" mat-raised-button color="primary">Edit profile</button>
 </a>
 <div class="container" *ngIf="profile">
-    <h1 class="text-center"> User Profile </h1>
+    <heading-element [value]="'User Profile'"></heading-element>
     <div class="display-flex">
         <div class="form-group">
             <label for="email">Email</label>
@@ -33,7 +33,7 @@
     </div>
 </div>
 <div class="container" *ngIf="address">
-    <h1 class="text-center"> User Address </h1>
+    <heading-element [value]="'User Address'"></heading-element>
     <div class="display-flex">
         <div class="form-group">
             <label for="email">Address Line 1</label>
@@ -64,7 +64,7 @@
     </div>
 </div>
 <div class="container" *ngIf="cardDetails">
-    <h1 class="text-center"> User Card </h1>
+    <heading-element [value]="'User Card'"></heading-element>
     <div class="display-flex">
         <div class="form-group">
             <label for="email">Card Number</label>

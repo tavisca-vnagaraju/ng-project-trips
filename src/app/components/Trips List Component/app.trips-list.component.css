@@ -1,27 +1,25 @@
-.heading{
-    text-align: center;
-}
-.trips-heading{
-    margin: 15px;
-    font-size: 20px;
+.flex-container{
     display: flex;
-    -webkit-box-shadow: 0px 0px 3px 0px rgba(103,58,183,1);
-    -moz-box-shadow: 0px 0px 3px 0px rgba(103,58,183,1);
-    box-shadow: 0px 0px 3px 0px rgba(103,58,183,1);
 }
-.trips-heading p{
+.trip-cost{
+    margin-left: auto;
+}
+.trip-card{
+    margin: 15px;
+    border-radius: 5px;
     padding: 15px;
-    margin: 0 auto;
-}
-.trips-card{
-    margin: 15px;
-    font-size: 20px;
-    display: flex;
+    background-color: white;
     -webkit-box-shadow: 0px 0px 3px 0px rgba(103,58,183,1);
     -moz-box-shadow: 0px 0px 3px 0px rgba(103,58,183,1);
     box-shadow: 0px 0px 3px 0px rgba(103,58,183,1);
 }
-.trips-card:hover{
+.trip-card .booked-date{
+    margin: 0px;
+}
+.trip-card .trip-cost{
+    margin-bottom: 0px;
+}
+.trip-card:hover{
     -webkit-box-shadow: 0px 0px 6px 0px rgba(103,58,183,1);
     -moz-box-shadow: 0px 0px 6px 0px rgba(103,58,183,1);
     box-shadow: 0px 0px 6px 0px rgba(103,58,183,1);
@@ -30,10 +28,6 @@
 .trips-list{
     margin: 0 auto;
     width: 70%;
-}
-.trips-card p{
-    padding: 15px;
-    margin: 0 auto;
 }
 mat-spinner{
     margin:0 auto;
