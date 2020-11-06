@@ -13,6 +13,7 @@ import {CustomValidator} from './app.custom.validator';
 export class ProfileFormComponent implements OnInit {
   frmProduct: FormGroup;
   @Input() profile: Profile;
+  title:string = "Update Profile";
   constructor(private profileService:ProfileService,private router:Router) { 
     this.profile = new Profile("","","",null,"","");
     this.frmProduct = new FormGroup({

@@ -1,19 +1,21 @@
 .item-card{
-    margin: 10px;
-    padding: 10px;
-    border-top: 2px solid #673ab7;
+    margin: 20px;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0px 0px 5px 1px rgba(103,58,183,1);
+    border-radius: 5px;
 }
 .trip-card{
-    margin: 10px;
-    padding: 10px;
+    margin: 20px;
+    background-color: white;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0px 0px 5px 1px rgba(103,58,183,1);
 }
 .flex{
     display: flex;
 }
 .trip-details{
-    -webkit-box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.75);
-    box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.75);
     width: 80%;
     margin: 10px auto;
     padding: 10px;

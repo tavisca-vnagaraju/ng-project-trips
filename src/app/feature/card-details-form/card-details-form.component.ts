@@ -13,6 +13,7 @@ export class CardDetailsFormComponent implements OnInit {
   cardDetails: CardDetails;
   months:Array<string>;
   years:Array<string>;
+  title:string = "Update Card Details";
   @Input() profile: Profile;
   constructor(private profileService:ProfileService,private router:Router) { 
       this.cardDetails = new CardDetails("","","","January",2020);

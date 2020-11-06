@@ -12,14 +12,27 @@ import {TripsList} from '../../models/app.trips-list.model';
 
 export class TripsListComponent {
   title = "Trips List";
-  trips:TripsList;
+  color:string;
+  trips:Array<TripsList>;
   errorResponse:any;
 
   constructor(private tripsService:TripsService,private router:Router){
     this.tripsService.getAllTrips().subscribe(
-      (data:TripsList) => this.trips = data,
+      (data:Array<TripsList>) => {
+        this.trips = data;
+        this.setColor();
+      },
       (error) => this.errorResponse = error
     );
+  }
+  setColor() {
+    this.trips.forEach(trip => {
+      if(trip.status == "Booked"){
+        this.color="green";
+      }else{
+        this.color = "red";
+      }
+    });
   }
 
   cardClicked(tripId):void{

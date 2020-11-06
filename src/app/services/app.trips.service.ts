@@ -13,10 +13,10 @@ export class TripsService {
     private url: string;
     constructor(private http: HttpClient) {  }
     
-    getAllTrips():Observable<TripsList>{
-        let resp:Observable<TripsList>;
+    getAllTrips():Observable<Array<TripsList>>{
+        let resp:Observable<Array<TripsList>>;
         this.url = "http://localhost:3001/trips";
-        resp = this.http.get<TripsList>(this.url);
+        resp = this.http.get<Array<TripsList>>(this.url);
         return resp;
     }
     
