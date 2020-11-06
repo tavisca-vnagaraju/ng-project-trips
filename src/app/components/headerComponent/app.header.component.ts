@@ -6,6 +6,7 @@ import {AUTH0_PARAMS,AUTH0_APIS} from '../../../environments/environment';
 import { getToken } from '../../ngrx/state/login/login.selector';
 import { LoginService } from 'src/app/services/app.login.service';
 import { Router } from '@angular/router';
+import { ILogin } from 'src/app/ngrx/state/login/login.reducer';
 
 @Component({
   selector: 'app-header',
@@ -18,7 +19,7 @@ export class AppHeaderComponent {
   requestParams:string;
   errorResponse:any;
 
-  constructor(private loginService:LoginService,private store: Store<any>,private route:Router){}
+  constructor(private loginService:LoginService,private store: Store<ILogin>,private route:Router){}
   
   ngOnInit(){
     this.store.select(getToken).subscribe(
@@ -66,6 +67,6 @@ export class AppHeaderComponent {
 
   logout(){
     localStorage.clear();
-    window.location.href=AUTH0_APIS.DOMAIN_LINK + AUTH0_APIS.LOGOUT + "?" +AUTH0_PARAMS.CLIENT_ID+ "&"+ AUTH0_PARAMS.LOGOUT_RETURN_TO_URI;
+    window.location.href = AUTH0_APIS.DOMAIN_LINK + AUTH0_APIS.LOGOUT + "?" +AUTH0_PARAMS.CLIENT_ID+ "&"+ AUTH0_PARAMS.LOGOUT_RETURN_TO_URI;
   }
 }

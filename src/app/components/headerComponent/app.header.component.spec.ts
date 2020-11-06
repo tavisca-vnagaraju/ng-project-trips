@@ -1,25 +1,80 @@
-import { TestBed, ComponentFixture, async } from "@angular/core/testing";
+import { TestBed, ComponentFixture, async, fakeAsync, tick } from "@angular/core/testing";
+import { of, throwError } from 'rxjs';
 
 import { AppHeaderComponent } from './app.header.component';
 
 describe('AppHeaderComponent',()=>{
-    let component:AppHeaderComponent;
-    let fixture:ComponentFixture<AppHeaderComponent>;
-    let textElement:HTMLElement;
-    beforeEach(() => {
-        TestBed.configureTestingModule({
-          declarations: [AppHeaderComponent]
-        }).compileComponents(); 
+    let fixture:AppHeaderComponent;
+    let loginServiceMock:any;
+    let storeMock:any;
+    let routerMock:any;
+    beforeEach(()=>{
+        loginServiceMock = {
+            loggedIn:jest.fn(),
+            getUserInfoAPI:jest.fn()
+        },
+        routerMock = {
+			navigate: jest.fn()
+        };
+        storeMock = {
+            select:jest.fn()
+        }
+        fixture = new AppHeaderComponent(loginServiceMock,storeMock,routerMock);
+        window.localStorage.clear();
     });
-    beforeEach(() => {
-       fixture = TestBed.createComponent(AppHeaderComponent);
-       component = fixture.componentInstance;
-       fixture.detectChanges();
-    });
-    it('should give header text', () => {
-        const element = fixture.nativeElement;
-        fixture.detectChanges();
-        textElement = element.querySelector('mat-toolbar span');
-        expect(textElement.innerHTML).toEqual('App Name');
+    describe("ngOnInit Test",()=>{
+        it('should call user info API if access token is not empty',fakeAsync(()=>{
+            const access_token = "cnsdkjcnd";
+            const user = {
+                "email": "vamsi8979@gmail.com",
+                "name": "vamsi krishna",
+                "nickname": "vamsi8979",
+            }
+            spyOn(storeMock,'select').and.returnValue(of(access_token));
+            spyOn(loginServiceMock,'getUserInfoAPI').and.returnValue(of(user));
+            fixture.ngOnInit();
+            tick(1000);
+            expect(fixture.userInfo.email).toEqual("vamsi8979@gmail.com");
+        }));
+        it('should call user info API if access token is empty',fakeAsync(()=>{
+            const access_token = "";
+            const user = {
+                "email": "vamsi8979@gmail.com",
+                "name": "vamsi krishna",
+                "nickname": "vamsi8979",
+            }
+            spyOn(storeMock,'select').and.returnValue(of(access_token));
+            spyOn(loginServiceMock,'getUserInfoAPI').and.returnValue(of(user));
+            spyOn(loginServiceMock,'loggedIn').and.returnValue(true);
+            fixture.ngOnInit();
+            tick(1000);
+            expect(fixture.userInfo.email).toEqual(user.email);
+        }));
+        
+        it('should navigate to login when error',fakeAsync(()=>{
+            spyOn(loginServiceMock,'getUserInfoAPI').and.returnValue(throwError({status:400}));
+            fixture.callUserInfoAPI("chsdjkcnsdj");
+            tick(1000);
+            expect(routerMock.navigate).toHaveBeenCalledWith(['/login']);
+        }));
+        it('should navigate to /trips/details page',()=>{
+            fixture.toUserProfileInfo();
+            expect(routerMock.navigate).toHaveBeenCalledWith(['/user/profile']);
+        });
+        it('should redirect to trips list page if logged in',()=>{
+            spyOn(loginServiceMock,'loggedIn').and.returnValue(true);
+            fixture.redirectToHome();
+            expect(routerMock.navigate).toHaveBeenCalledWith(['/tripsList']);
+        });
+        it('should redirect to login if not logged in',()=>{
+            spyOn(loginServiceMock,'loggedIn').and.returnValue(false);
+            fixture.redirectToHome();
+            expect(routerMock.navigate).toHaveBeenCalledWith(['/login']);
+        });
+        it('should clear local storage',()=>{
+            window.localStorage.setItem("tok","dvhskjvsvds");
+            fixture.logout();
+            expect(window.localStorage.getItem("tok")).toEqual(null);
+        });
     });
 });

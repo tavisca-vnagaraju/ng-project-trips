@@ -7,6 +7,6 @@ export class TripsList {
         public endDate:string,
         public cancelledDate:string,
         public totalCost:string,
-        public currencyCod:string
+        public currencyCode:string
     ){}
 }

@@ -1,25 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Profile } from '../models/profile';
 
 import { UserProfileEditComponent } from './user-profile-edit.component';
 
 describe('UserProfileEditComponent', () => {
-  let component: UserProfileEditComponent;
-  let fixture: ComponentFixture<UserProfileEditComponent>;
+  let fixture:UserProfileEditComponent;
+  let loginServiceMock:any;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ UserProfileEditComponent ]
-    })
-    .compileComponents();
-  }));
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(UserProfileEditComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  beforeEach(()=>{
+    loginServiceMock = {
+        getUserInfo:jest.fn(),
+      };
+      fixture  = new UserProfileEditComponent(loginServiceMock);
   });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  
+it('should load profile email empty', () => {
+     expect(fixture.profile.email).toEqual("");
   });
 });

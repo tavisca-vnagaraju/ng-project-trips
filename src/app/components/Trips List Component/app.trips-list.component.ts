@@ -16,7 +16,8 @@ export class TripsListComponent {
   trips:Array<TripsList>;
   errorResponse:any;
 
-  constructor(private tripsService:TripsService,private router:Router){
+  constructor(private tripsService:TripsService,private router:Router){}
+  ngOnInit(){
     this.tripsService.getAllTrips().subscribe(
       (data:Array<TripsList>) => {
         this.trips = data;
