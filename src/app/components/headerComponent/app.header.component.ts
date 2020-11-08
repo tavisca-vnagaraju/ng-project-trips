@@ -28,7 +28,7 @@ export class AppHeaderComponent {
             this.callUserInfoAPI(accessToken)
           }
           else{
-            if(this.loginService.loggedIn() && (this.userInfo == null || this.userInfo == undefined) ){
+            if(this.loginService.loggedIn() && this.userInfo == null ){
               let access_token = localStorage.getItem('tok');
               this.callUserInfoAPI(access_token);
             }
@@ -45,10 +45,8 @@ export class AppHeaderComponent {
       },
       (error) => {
         this.errorResponse = error;
-        if(error!=null){
           localStorage.clear();
-          this.route.navigate(['/login'])
-        }
+          this.route.navigate(['/login']);
       }
     )
   }

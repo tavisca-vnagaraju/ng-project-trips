@@ -17,13 +17,17 @@ export class LoginComponent {
               private domSanitizer: DomSanitizer,
               private router:Router,
               private service:LoginService
-  ) {
-  const googleLogoURL = 
+  ) { }
+  ngOnInit(){
+    
+    const googleLogoURL = 
     "https://raw.githubusercontent.com/fireflysemantics/logo/master/Google.svg";
-  this.matIconRegistry.addSvgIcon("logo",
+    this.matIconRegistry.addSvgIcon("logo",
                   this.domSanitizer.bypassSecurityTrustResourceUrl(googleLogoURL));
     if(this.service.loggedIn()){
       this.router.navigate(['/tripsList']);
+    }else{
+      this.router.navigate(['/login']);
     }
   }
 

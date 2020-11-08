@@ -1,4 +1,4 @@
-import { TestBed, ComponentFixture, async, fakeAsync, tick } from "@angular/core/testing";
+import { fakeAsync, tick } from "@angular/core/testing";
 import { of, throwError } from 'rxjs';
 
 import { AppHeaderComponent } from './app.header.component';
@@ -50,6 +50,20 @@ describe('AppHeaderComponent',()=>{
             tick(1000);
             expect(fixture.userInfo.email).toEqual(user.email);
         }));
+        it('should call user info API if access token is empty and not logged in',fakeAsync(()=>{
+            const access_token = "";
+            const user = {
+                "email": "vamsi8979@gmail.com",
+                "name": "vamsi krishna",
+                "nickname": "vamsi8979",
+            }
+            spyOn(storeMock,'select').and.returnValue(of(access_token));
+            spyOn(loginServiceMock,'getUserInfoAPI').and.returnValue(of(null));
+            spyOn(loginServiceMock,'loggedIn').and.returnValue(false);
+            fixture.ngOnInit();
+            tick(1000);
+            expect(fixture.userInfo).toEqual(undefined);
+        }));
         
         it('should navigate to login when error',fakeAsync(()=>{
             spyOn(loginServiceMock,'getUserInfoAPI').and.returnValue(throwError({status:400}));
@@ -73,7 +87,15 @@ describe('AppHeaderComponent',()=>{
         });
         it('should clear local storage',()=>{
             window.localStorage.setItem("tok","dvhskjvsvds");
+            global.window = Object.create(window);
+            const url = "https://vamsi8979.us.auth0.com/v2/logout?";
+            Object.defineProperty(window, 'location', {
+                value: {
+                    href: url
+                }
+            });
             fixture.logout();
+            expect(window.location.href).toMatch("https://vamsi8979.us.auth0.com/v2/logout?");
             expect(window.localStorage.getItem("tok")).toEqual(null);
         });
     });

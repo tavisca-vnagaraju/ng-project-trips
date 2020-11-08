@@ -20,7 +20,6 @@ export class Loading{
         this.queryParams = this.getQueryParams();
         this.loginService.setStorage(this.queryParams.access_token);
         this.store.dispatch(LoginActions.setAccessToken({token:this.queryParams.access_token}));
-        //this.queryParamString = this.route.snapshot.fragment;
     }
 
     ngOnInit(){
