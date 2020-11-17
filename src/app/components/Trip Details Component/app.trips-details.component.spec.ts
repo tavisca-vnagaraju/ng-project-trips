@@ -75,6 +75,11 @@ describe('TripsListComponent',()=>{
             fixture.ngAfterContentChecked();
             expect(fixture.color).toEqual("green");
         });
+        it('should give color null',()=>{
+            fixture.tripDetails = null;
+            fixture.ngAfterContentChecked();
+            expect(fixture.color).toEqual(undefined);
+        });
         it('should give color red',()=>{
             fixture.tripDetails ={
                 "id":"748693",

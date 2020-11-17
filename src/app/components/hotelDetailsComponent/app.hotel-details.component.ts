@@ -3,8 +3,9 @@ import { MatDialog } from '@angular/material/dialog';
 
 import { HotelBookingDetails } from '../../models/app.hotel-booking-details.model';
 import { TripDetails } from 'src/app/models/app.trip-details.model';
-import { ConfirmDialogComponent , ConfirmDialogModel } from '../confirmDialogCommponent/confirm-dialog.component';
+import { ConfirmDialogComponent } from '../confirmDialogCommponent/confirm-dialog.component';
 import { HotelService } from 'src/app/services/app.hotel.service';
+import { ConfirmDialogModel } from 'src/app/models/app.confirm-dialog.model';
 
 @Component({
   selector: 'app-hotel-details-component',
@@ -21,7 +22,7 @@ export class HotelDetailsComponent {
   hotelStatusColor:string;
   expanded:boolean = true;
   errorResponse:any;
-
+  dialogRef:any;
   constructor(private hotelService:HotelService,public dialog: MatDialog) {}
 
   ngOnInit(){
@@ -69,12 +70,12 @@ export class HotelDetailsComponent {
   confirmDialog(): void {
     const message = `Are you sure you want to cancel the Hotel ?`;
     const dialogData = new ConfirmDialogModel("Confirm Action", message);
-    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+    this.dialogRef = this.dialog.open(ConfirmDialogComponent, {
       maxWidth: "400px",
       data: dialogData
     });
 
-    dialogRef.afterClosed().subscribe(dialogResult => {
+    this.dialogRef.afterClosed().subscribe(dialogResult => {
       this.cancelHotel(dialogResult);
     });
   }

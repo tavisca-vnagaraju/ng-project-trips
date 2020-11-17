@@ -1,5 +1,4 @@
-import { fakeAsync, inject, TestBed, tick } from '@angular/core/testing';
-import { HttpClientTestingModule,HttpTestingController } from '@angular/common/http/testing';
+import { fakeAsync } from '@angular/core/testing';
 import { TestingService } from './testing.service';
 import { of } from 'rxjs';
 

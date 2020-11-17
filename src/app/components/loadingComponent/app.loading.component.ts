@@ -3,7 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 
 import * as LoginActions from '../../ngrx/state/login/login.action';
-import { LoginService } from 'src/app/services/app.login.service';
 
 @Component({
     selector: 'app-loading-component',
@@ -13,16 +12,14 @@ import { LoginService } from 'src/app/services/app.login.service';
 export class Loading{
     queryParams:any;
     constructor(private route: ActivatedRoute,
-        private loginService:LoginService,
         private router:Router,
         private store: Store<any>
-    ) {
-        this.queryParams = this.getQueryParams();
-        this.loginService.setStorage(this.queryParams.access_token);
-        this.store.dispatch(LoginActions.setAccessToken({token:this.queryParams.access_token}));
-    }
-
+    ) {}
+    
     ngOnInit(){
+        this.queryParams = this.getQueryParams();
+        localStorage.setItem('tok',this.queryParams.access_token);
+        this.store.dispatch(LoginActions.setAccessToken({token:this.queryParams.access_token}));
         this.router.navigate(['/tripsList']);
     }
     

@@ -3,6 +3,8 @@ import { of, throwError } from 'rxjs';
 
 import { AppHeaderComponent } from './app.header.component';
 
+import * as LoginActions from '../../ngrx/state/login/login.action';
+
 describe('AppHeaderComponent',()=>{
     let fixture:AppHeaderComponent;
     let loginServiceMock:any;
@@ -18,7 +20,7 @@ describe('AppHeaderComponent',()=>{
         };
         storeMock = {
             select:jest.fn()
-        }
+        };
         fixture = new AppHeaderComponent(loginServiceMock,storeMock,routerMock);
         window.localStorage.clear();
     });
@@ -98,5 +100,13 @@ describe('AppHeaderComponent',()=>{
             expect(window.location.href).toMatch("https://vamsi8979.us.auth0.com/v2/logout?");
             expect(window.localStorage.getItem("tok")).toEqual(null);
         });
+    });
+});
+
+describe('Store test', () => {
+    it('should set selected id', () => {
+      const logintest = <any>{ token: "cjksd"},
+        action = LoginActions.setAccessToken(logintest);
+      expect(action.type).toBe('[Login] Set Access Token');
     });
 });
