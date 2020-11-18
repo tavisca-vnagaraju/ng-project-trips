@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { CardDetails } from '../models/card-details';
 import { Profile } from '../models/profile';
@@ -9,7 +9,7 @@ import { ProfileService } from '../services/profile.service';
   templateUrl: './card-details-form.component.html',
   styleUrls: ['./card-details-form.component.css']
 })
-export class CardDetailsFormComponent implements OnInit {
+export class CardDetailsFormComponent {
   cardDetails: CardDetails;
   months:Array<string>;
   years:Array<string>;
@@ -19,8 +19,6 @@ export class CardDetailsFormComponent implements OnInit {
       this.cardDetails = new CardDetails("","","","January",2020);
       this.months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
       this.years = new Array(11);
-  }
-  ngOnInit(): void {
   }
   selectedMonth(event){
     this.cardDetails.ExpirationMonth = event.target.value;
@@ -32,7 +30,6 @@ export class CardDetailsFormComponent implements OnInit {
     this.cardDetails.email = this.profile.email;
     this.profileService.postCardDetails(this.cardDetails).subscribe(
       data =>{
-        console.log(data);
         this.router.navigate(["/user/profile"]);
       }
     )

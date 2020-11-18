@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Profile } from '../models/profile';
@@ -10,7 +10,7 @@ import {CustomValidator} from './app.custom.validator';
   templateUrl: './profile-form.component.html',
   styleUrls: ['./profile-form.component.css']
 })
-export class ProfileFormComponent implements OnInit {
+export class ProfileFormComponent {
   frmProduct: FormGroup;
   @Input() profile: Profile;
   title:string = "Update Profile";
@@ -35,15 +35,12 @@ export class ProfileFormComponent implements OnInit {
     });
   }
   
-  ngOnInit(): void {
-  }
   save(){
     this.profile.DOB = this.frmProduct.value.DOB;
     this.profile.gender = this.frmProduct.value.gender;
     this.profile.phone = this.frmProduct.value.phone;
     this.profileService.postProfile(this.profile).subscribe(
       data => {
-        console.log(data);
         this.router.navigate(["/user/profile"]);
       }
     )
