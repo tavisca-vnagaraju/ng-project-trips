@@ -3,10 +3,8 @@ import { Store } from '@ngrx/store';
 
 import { UserInfo } from '../../models/app.userInfo.model';
 import {AUTH0_PARAMS,AUTH0_APIS} from '../../../environments/environment';
-import { getToken } from '../../ngrx/state/login/login.selector';
 import { LoginService } from 'src/app/services/app.login.service';
 import { Router } from '@angular/router';
-import { ILogin } from 'src/app/ngrx/state/login/login.reducer';
 
 @Component({
   selector: 'app-header',
@@ -19,13 +17,13 @@ export class AppHeaderComponent {
   requestParams:string;
   errorResponse:any;
 
-  constructor(private loginService:LoginService,private store: Store<ILogin>,private route:Router){}
+  constructor(private loginService:LoginService,private store: Store<any>,private route:Router){}
   
   ngOnInit(){
-    this.store.select(getToken).subscribe(
+    this.store.select('login').subscribe(
       accessToken => {
-          if(accessToken != ""){
-            this.callUserInfoAPI(accessToken)
+          if(accessToken.token != ""){
+            this.callUserInfoAPI(accessToken.token)
           }
           else{
             if(this.loginService.loggedIn() && this.userInfo == null ){

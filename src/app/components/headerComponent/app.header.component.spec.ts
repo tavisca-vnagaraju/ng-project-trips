@@ -26,7 +26,9 @@ describe('AppHeaderComponent',()=>{
     });
     describe("ngOnInit Test",()=>{
         it('should call user info API if access token is not empty',fakeAsync(()=>{
-            const access_token = "cnsdkjcnd";
+            const access_token = {
+                token : "cnsdkjcnd"
+            }
             const user = {
                 "email": "vamsi8979@gmail.com",
                 "name": "vamsi krishna",
@@ -39,7 +41,9 @@ describe('AppHeaderComponent',()=>{
             expect(fixture.userInfo.email).toEqual("vamsi8979@gmail.com");
         }));
         it('should call user info API if access token is empty',fakeAsync(()=>{
-            const access_token = "";
+            const access_token = {
+                token : ""
+            }
             const user = {
                 "email": "vamsi8979@gmail.com",
                 "name": "vamsi krishna",
@@ -53,7 +57,9 @@ describe('AppHeaderComponent',()=>{
             expect(fixture.userInfo.email).toEqual(user.email);
         }));
         it('should call user info API if access token is empty and not logged in',fakeAsync(()=>{
-            const access_token = "";
+            const access_token = {
+                token : ""
+            }
             const user = {
                 "email": "vamsi8979@gmail.com",
                 "name": "vamsi krishna",
