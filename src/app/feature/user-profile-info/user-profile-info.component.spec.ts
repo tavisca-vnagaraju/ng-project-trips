@@ -1,5 +1,5 @@
 import { fakeAsync, tick } from '@angular/core/testing';
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 import  { UserProfileInfoComponent } from './user-profile-info.component';
 
 describe('UserProfileInfoComponent',()=>{
@@ -76,5 +76,63 @@ describe('UserProfileInfoComponent',()=>{
             tick(1000);
             expect(fixture.profile.email).toEqual("vamsi8979@gmail.com");
         }));
+        it('should throw error user profile information ',fakeAsync(()=>{
+            const user = {
+                "email": "vamsi8979@gmail.com",
+                "name": "vamsi krishna",
+                "nickname": "vamsi8979",
+            }
+            spyOn(loginServiceMock,'getUserInfo').and.returnValue(of(user));
+            spyOn(profileServiceMock,'getProfile').and.returnValue(throwError({status:500}));
+            spyOn(profileServiceMock,'getAddress').and.returnValue(of(null));
+            spyOn(profileServiceMock,"getCardDetails").and.returnValue(of(null));
+            fixture.ngOnInit();
+            tick(1000);
+            expect(fixture.errorResponse.status).toBe(500);
+        }));
+        it('should throw error Address information ',fakeAsync(()=>{
+            const user = {
+                "email": "vamsi8979@gmail.com",
+                "name": "vamsi krishna",
+                "nickname": "vamsi8979",
+            }
+            spyOn(loginServiceMock,'getUserInfo').and.returnValue(of(user));
+            spyOn(profileServiceMock,'getProfile').and.returnValue(of(user));
+            spyOn(profileServiceMock,'getAddress').and.returnValue(throwError({status:500}));
+            spyOn(profileServiceMock,"getCardDetails").and.returnValue(of(null));
+            fixture.ngOnInit();
+            tick(1000);
+            expect(fixture.errorResponse.status).toBe(500);
+        }));
+        it('should throw error Card Details information ',fakeAsync(()=>{
+            const user = {
+                "email": "vamsi8979@gmail.com",
+                "name": "vamsi krishna",
+                "nickname": "vamsi8979",
+            }
+            const address = {
+                    addressLine1:"100010 South Connexions Loyalty Boulevard",
+                    addressLine2:"Suite Northern Ireland MS 100011",
+                    city:"Austin",
+                    state:"Texas",
+                    country:"United State",
+                    zip:"73301"
+            }
+            const card={
+                email:"vamsi8979@gmail.com",
+                CardNumber:"23133123",
+                CardHolderName:"23123213321321",
+                ExpirationMonth:"12",
+                ExpirationYear:"2020"
+            }
+            spyOn(loginServiceMock,'getUserInfo').and.returnValue(of(user));
+            spyOn(profileServiceMock,'getProfile').and.returnValue(of(user));
+            spyOn(profileServiceMock,'getAddress').and.returnValue(of(null));
+            spyOn(profileServiceMock,"getCardDetails").and.returnValue(throwError({status:500}));
+            fixture.ngOnInit();
+            tick(1000);
+            expect(fixture.errorResponse.status).toBe(500);
+        }));
+    
     });
 });

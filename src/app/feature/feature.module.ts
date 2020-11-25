@@ -10,6 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { AddressFormComponent } from './address-form/address-form.component';
 import { CardDetailsFormComponent } from './card-details-form/card-details-form.component';
 import { UserProfileEditComponent } from './user-profile-edit/user-profile-edit.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 @NgModule({
   declarations: [
     UserProfileInfoComponent,
@@ -26,7 +27,8 @@ import { UserProfileEditComponent } from './user-profile-edit/user-profile-edit.
     ReactiveFormsModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatButtonModule
+    MatButtonModule,
+    MatProgressSpinnerModule
   ],
   exports:[
     UserProfileInfoComponent

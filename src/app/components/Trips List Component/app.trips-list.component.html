@@ -2,8 +2,8 @@
 <div *ngIf="!trips && !errorResponse">
     <mat-spinner></mat-spinner>
 </div>
-<div *ngIf="errorResponse">
-    <h1> {{errorResponse.message}} </h1>
+<div *ngIf="errorResponse" class="error">
+    Unknown Error
 </div>
 <div class="trips-list" *ngIf="trips">
     <div class="trip-card" *ngFor="let trip of trips" (click)="cardClicked(trip.id)">

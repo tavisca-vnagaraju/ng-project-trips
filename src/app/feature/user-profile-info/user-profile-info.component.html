@@ -1,86 +1,97 @@
-<a routerLink="/user/profile/edit" routerLinkActive="active" >
-    <button class="form-group" mat-raised-button color="primary">Edit profile</button>
-</a>
-<div class="container" *ngIf="profile">
-    <heading-element [value]="'User Profile'"></heading-element>
-    <div class="display-flex">
-        <div class="form-group">
-            <label for="email">Email</label>
-            <p class="form-control"> {{profile.email}} </p>
-        </div>
-        <div class="form-group">
-            <label for="name">Name</label>
-            <p class="form-control"> {{profile.name}}</p>
-        </div>
-        <div class="form-group">
-            <label for="nickname">Nick Name</label>
-            <p class="form-control"> {{profile.nickname}}</p>
-        </div>
-    </div>
-    <div class="display-flex" *ngIf="profile.phone != ''">
-        <div class="form-group">
-            <label for="phone">Phone</label>
-            <p class="form-control"> {{profile.phone}}</p>
-        </div>
-        <div class="form-group">
-            <label for="phone">DOB</label>
-            <p class="form-control"> {{profile.DOB | date :'mediumDate'}}</p>
-        </div>
-        <div class="form-group">
-            <label for="phone">Gender</label>
-            <p class="form-control"> {{profile.gender}}</p>
-        </div>
-    </div>
+<div *ngIf="errorResponse" class="error">
+    Unknown Error
 </div>
-<div class="container" *ngIf="address">
-    <heading-element [value]="'User Address'"></heading-element>
-    <div class="display-flex">
-        <div class="form-group">
-            <label for="email">Address Line 1</label>
-            <p class="form-control">{{address.addressLine1}}</p>
-        </div>
-        <div class="form-group">
-            <label for="name">Address Line 2</label>
-            <p class="form-control">{{address.addressLine2}}</p>
-        </div>
-    </div>
-    <div class="display-flex">
-        <div class="form-group">
-            <label for="nickname">City</label>
-            <p class="form-control">{{address.city}}</p>
-        </div>
-        <div class="form-group">
-            <label for="phone">State</label>
-            <p class="form-control">{{address.state}}</p>
-        </div>
-        <div class="form-group">
-            <label for="phone">Country</label>
-            <p class="form-control">{{address.country}}</p>
-        </div>
-        <div class="form-group">
-            <label for="phone">Zip</label>
-            <p class="form-control">{{address.zip}}</p>
-        </div>
-    </div>
+
+<div *ngIf="!errorResponse && profile.email == ''">
+    <mat-spinner></mat-spinner>
 </div>
-<div class="container" *ngIf="cardDetails">
-    <heading-element [value]="'User Card'"></heading-element>
-    <div class="display-flex">
-        <div class="form-group">
-            <label for="email">Card Number</label>
-            <p class="form-control"> {{cardDetails.CardNumber}} </p>
+<div *ngIf="!errorResponse">
+    <div class="container" *ngIf=" profile.email != '' ">
+        <div class="display-flex">
+            <heading-element [value]="'User Profile'" style="margin: 0 auto;"></heading-element>
+            <a routerLink="/user/profile/edit" routerLinkActive="active" *ngIf=" profile.email != '' ">
+                <i class="material-icons md-24">edit</i>
+            </a>
         </div>
-        <div class="form-group">
-            <label for="name">Card Holder Name</label>
-            <p class="form-control"> {{cardDetails.CardHolderName}} </p>
+        <div class="display-flex">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <p class="form-control"> {{profile.email}} </p>
+            </div>
+            <div class="form-group">
+                <label for="name">Name</label>
+                <p class="form-control"> {{profile.name}}</p>
+            </div>
+            <div class="form-group">
+                <label for="nickname">Nick Name</label>
+                <p class="form-control"> {{profile.nickname}}</p>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="nickname">Expiration Month</label>
-            <p class="form-control"> {{cardDetails.ExpirationMonth}} </p>
+        <div class="display-flex" *ngIf="profile.phone != ''">
+            <div class="form-group">
+                <label for="phone">Phone</label>
+                <p class="form-control"> {{profile.phone}}</p>
+            </div>
+            <div class="form-group">
+                <label for="phone">DOB</label>
+                <p class="form-control"> {{profile.DOB | date :'mediumDate'}}</p>
+            </div>
+            <div class="form-group">
+                <label for="phone">Gender</label>
+                <p class="form-control"> {{profile.gender}}</p>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="phone">Expiration Year</label>
-            <p class="form-control"> {{cardDetails.ExpirationYear}} </p>
+    </div>
+    <div class="container" *ngIf="address">
+        <heading-element [value]="'User Address'"></heading-element>
+        <div class="display-flex">
+            <div class="form-group">
+                <label for="email">Address Line 1</label>
+                <p class="form-control">{{address.addressLine1}}</p>
+            </div>
+            <div class="form-group">
+                <label for="name">Address Line 2</label>
+                <p class="form-control">{{address.addressLine2}}</p>
+            </div>
+        </div>
+        <div class="display-flex">
+            <div class="form-group">
+                <label for="nickname">City</label>
+                <p class="form-control">{{address.city}}</p>
+            </div>
+            <div class="form-group">
+                <label for="phone">State</label>
+                <p class="form-control">{{address.state}}</p>
+            </div>
+            <div class="form-group">
+                <label for="phone">Country</label>
+                <p class="form-control">{{address.country}}</p>
+            </div>
+            <div class="form-group">
+                <label for="phone">Zip</label>
+                <p class="form-control">{{address.zip}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="container" *ngIf="cardDetails">
+        <heading-element [value]="'User Card'"></heading-element>
+        <div class="display-flex">
+            <div class="form-group">
+                <label for="email">Card Number</label>
+                <p class="form-control"> {{cardDetails.CardNumber}} </p>
+            </div>
+            <div class="form-group">
+                <label for="name">Card Holder Name</label>
+                <p class="form-control"> {{cardDetails.CardHolderName}} </p>
+            </div>
+            <div class="form-group">
+                <label for="nickname">Expiration Month</label>
+                <p class="form-control"> {{cardDetails.ExpirationMonth}} </p>
+            </div>
+            <div class="form-group">
+                <label for="phone">Expiration Year</label>
+                <p class="form-control"> {{cardDetails.ExpirationYear}} </p>
+            </div>
         </div>
     </div>
 </div>
