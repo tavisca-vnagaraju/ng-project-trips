@@ -32,13 +32,13 @@ export class TripsDetailsComponent {
   }
 
   ngAfterContentChecked(){
-    if(this.tripDetails){
-      if(this.tripDetails.status == "Booked"){
-        this.color = "green";
-      }else {
-        this.color = "red";
+      if(this.tripDetails){
+        if(this.tripDetails.status == "Booked"){
+          this.color = "green";
+        }else {
+          this.color = "red";
+        }
       }
-    }
   }
 
   updateTripDetails(updatedTripDetails){

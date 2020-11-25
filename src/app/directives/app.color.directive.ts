@@ -1,30 +1,24 @@
-import {Directive, ElementRef, Renderer2, HostListener } from '@angular/core';
+import { style } from '@angular/animations';
+import {Directive, ElementRef, Renderer2, HostListener,HostBinding } from '@angular/core';
 @Directive({
   selector: '[setColor]'
 })
 export class ColorDirective {
-  constructor(private ele: ElementRef, private renderer: Renderer2) { }
+  
+  @HostBinding("style.background-color") backgroundColor:string;
+  @HostBinding("style.border") border:string;
+  @HostBinding("style.color") color:string;
 
-  private applyBackgroundColor(color: string): void {
-    this.renderer.setStyle(this.ele.nativeElement,
-       'backgroundColor', color);
-  }
-  private applyBorder():void{
-    this.renderer.setStyle(this.ele.nativeElement,'border','2px solid #673ab7');
-  }
-  private applyColor(color:string){
-    this.renderer.setStyle(this.ele.nativeElement,'color',color);
-  }
   @HostListener('mouseenter')
   mouseenter(): void {
-    this.applyBackgroundColor("#fff");
-    this.applyBorder();
-    this.applyColor("#673ab7");
+    this.backgroundColor = "#fff";
+    this.border = "2px solid #673ab7";
+    this.color = "#673ab7";
   }
 
   @HostListener('mouseleave')
   mouseleave(): void {
-    this.applyBackgroundColor("#673ab7");
-    this.applyColor("#fff");
+    this.backgroundColor = "#673ab7";
+    this.color = "#fff";
   }
 }

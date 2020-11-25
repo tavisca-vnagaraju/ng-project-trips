@@ -3,7 +3,6 @@ import { Store } from '@ngrx/store';
 
 import { UserInfo } from '../../models/app.userInfo.model';
 import {AUTH0_PARAMS,AUTH0_APIS} from '../../../environments/environment';
-import { getToken } from '../../ngrx/state/login/login.selector';
 import { LoginService } from 'src/app/services/app.login.service';
 import { Router } from '@angular/router';
 
@@ -21,13 +20,13 @@ export class AppHeaderComponent {
   constructor(private loginService:LoginService,private store: Store<any>,private route:Router){}
   
   ngOnInit(){
-    this.store.select(getToken).subscribe(
+    this.store.select('login').subscribe(
       accessToken => {
-          if(accessToken != ""){
-            this.callUserInfoAPI(accessToken)
+          if(accessToken.token != ""){
+            this.callUserInfoAPI(accessToken.token)
           }
           else{
-            if(this.loginService.loggedIn() && (this.userInfo == null || this.userInfo == undefined) ){
+            if(this.loginService.loggedIn() && this.userInfo == null ){
               let access_token = localStorage.getItem('tok');
               this.callUserInfoAPI(access_token);
             }
@@ -44,10 +43,8 @@ export class AppHeaderComponent {
       },
       (error) => {
         this.errorResponse = error;
-        if(error!=null){
           localStorage.clear();
-          this.route.navigate(['/login'])
-        }
+          this.route.navigate(['/login']);
       }
     )
   }
@@ -66,6 +63,6 @@ export class AppHeaderComponent {
 
   logout(){
     localStorage.clear();
-    window.location.href=AUTH0_APIS.DOMAIN_LINK + AUTH0_APIS.LOGOUT + "?" +AUTH0_PARAMS.CLIENT_ID+ "&"+ AUTH0_PARAMS.LOGOUT_RETURN_TO_URI;
+    window.location.href = AUTH0_APIS.DOMAIN_LINK + AUTH0_APIS.LOGOUT + "?" +AUTH0_PARAMS.CLIENT_ID+ "&"+ AUTH0_PARAMS.LOGOUT_RETURN_TO_URI;
   }
 }

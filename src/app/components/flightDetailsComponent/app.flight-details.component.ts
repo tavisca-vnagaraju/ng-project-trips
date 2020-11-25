@@ -1,14 +1,11 @@
 import { Component , Input,Output,EventEmitter} from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { Store } from '@ngrx/store';
 
 import { FlightBookingDetails } from 'src/app/models/app.flight-booking-details.model';
 import { TripDetails } from 'src/app/models/app.trip-details.model';
-import { ConfirmDialogComponent , ConfirmDialogModel } from '../confirmDialogCommponent/confirm-dialog.component';
+import { ConfirmDialogComponent  } from '../confirmDialogCommponent/confirm-dialog.component';
 import { FlightService } from 'src/app/services/app.flight.service';
-import * as FlightActions from '../../ngrx/state/flight/flight.action';
-import {  getShowFlightCode } from '../../ngrx/state/flight/flight.selector';
+import { ConfirmDialogModel } from 'src/app/models/app.confirm-dialog.model';
 
 @Component({
   selector: 'app-flight-details-component',
@@ -27,17 +24,13 @@ export class FlightDetailsComponent {
   errorResponse:any;
   displayCode: boolean = false;
 
-  constructor(private store: Store<any>,
-              private flightService:FlightService,
+  constructor(private flightService:FlightService,
               public dialog: MatDialog) {}
 
   ngOnInit(){
     if(this.tripDetails.isFlightBooked){
       this.getFlightBookingDetailsById(this.tripDetails.flightBookingId);
     }
-    this.store.select(getShowFlightCode).subscribe(
-      showFlightCode => this.displayCode = showFlightCode
-    );
   }
 
   ngAfterContentChecked(){
@@ -96,9 +89,4 @@ export class FlightDetailsComponent {
       )
     }
   }
-
-  checkChanged(): void {
-    this.store.dispatch(FlightActions.toggleFlightCode());
-  }
-  
 }

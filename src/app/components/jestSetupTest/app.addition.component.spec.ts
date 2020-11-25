@@ -1,30 +1,43 @@
-import { Component } from '@angular/core';
-import { TestBed, ComponentFixture, async } from "@angular/core/testing";
-
+import { fakeAsync, tick } from '@angular/core/testing';
+import { of } from 'rxjs';
+import { TripsList } from 'src/app/models/app.trips-list.model';
 import { AdditionComponent } from './app.addition.component';
 
-describe('AdditionComponent',()=>{
-    let component:AdditionComponent;
-    let fixture:ComponentFixture<AdditionComponent>;
-    let button:HTMLElement;
-    let textElement:HTMLElement;
-    beforeEach(() => {
-        // defin the TestBedConfiguration
-        TestBed.configureTestingModule({
-          declarations: [AdditionComponent]
-        }).compileComponents(); 
+describe('AdditionComponent',() => {
+
+    let fixture:AdditionComponent;
+    let testServiceMock:any;
+
+    beforeEach(()=>{
+        testServiceMock = {
+            getCategories:jest.fn(),
+        };
+        fixture  = new AdditionComponent(testServiceMock);
     });
-    beforeEach(() => {
-       fixture = TestBed.createComponent(AdditionComponent);
-       component = fixture.componentInstance;
-       fixture.detectChanges();
-    });
-    it('should give answer when loaded', () => {
-        const element = fixture.nativeElement;
-        button = element.querySelector('.button');
-        const eventType = button.dispatchEvent(new Event('click'));
-        fixture.detectChanges();
-        textElement = element.querySelector('.answer');
-        expect(textElement.innerHTML).toEqual('30');
+    describe("Add testing",()=>{
+        it('should give answer when loaded', () => {
+            fixture.number1 = 10;
+            fixture.number2 = 20;
+            fixture.Add();
+            
+            expect(fixture.answer).toEqual(30);
+        });
+        it('should be 0 if less than 30',() => {
+            fixture.number1 = 10;
+            fixture.number2 = 10;
+            fixture.Add();
+            expect(fixture.answer).toEqual(100);
+        });
+    })
+    describe("ngOnInit test",()=>{
+        it('should get categories',fakeAsync(()=>{
+            const mockObject = [
+                "animal"
+            ];
+            spyOn(testServiceMock,"getCategories").and.returnValue(of(mockObject));
+            fixture.ngOnInit();
+            tick(1000);
+            expect(fixture.categories.length).toEqual(1);
+        }));
     });
 });

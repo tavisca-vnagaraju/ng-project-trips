@@ -3,7 +3,8 @@ import { MatDialog } from '@angular/material/dialog';
 
 import { CarBookingDetails } from 'src/app/models/app.car-booking-details.model';
 import { TripDetails } from 'src/app/models/app.trip-details.model';
-import { ConfirmDialogComponent , ConfirmDialogModel } from '../confirmDialogCommponent/confirm-dialog.component';
+import { ConfirmDialogComponent  } from '../confirmDialogCommponent/confirm-dialog.component';
+import { ConfirmDialogModel } from 'src/app/models/app.confirm-dialog.model';
 import { CarService } from 'src/app/services/app.car.service';
 
 @Component({

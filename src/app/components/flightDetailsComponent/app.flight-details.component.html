@@ -4,14 +4,6 @@
     <h2 class="start-date"> Journey on {{tripDetails.flightInfo.startDate}} </h2>
     <h2 class="end-date"> return on {{tripDetails.flightInfo.endDate}} </h2>
 </div>
-<label>
-    <input class="form-check-input"
-           type="checkbox"
-           (change)="checkChanged()"
-           [checked]="displayCode">
-    Display Flight Code
-</label><br>
-<span *ngIf="displayCode"> {{flightBookingDetails.flightId}} </span>
 <div class="flight-booking-details">
     <button mat-raised-button (click)="confirmDialog()" setColor class="cancel" [class.disabled]="isDisabled"> Cancel </button>
     <h2>Confirmation Id <i class="material-icons md-24">horizontal_rule</i> {{tripDetails.flightBookingId}}</h2>

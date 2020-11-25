@@ -4,7 +4,7 @@ class LitFooter extends LitElement {
 
 
   [x:string]:any;
-  @property()footer = 'App Name Trips Manager';
+  @property()footer = 'Trips Manager';
 
   constructor() {
     super();

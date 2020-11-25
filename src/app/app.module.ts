@@ -36,7 +36,6 @@ import { ColorDirective } from './directives/app.color.directive';
 
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
-import { flightReducer } from './ngrx/state/flight/flight.reducer';
 import {loginReducer} from './ngrx/state/login/login.reducer';
 import { createCustomElement } from '@angular/elements';
 @NgModule({
@@ -70,7 +69,6 @@ import { createCustomElement } from '@angular/elements';
     BrowserAnimationsModule,
     FeatureModule,
     StoreModule.forRoot({}),
-    StoreModule.forFeature('flight', flightReducer),
     StoreModule.forFeature('login', loginReducer),
     StoreDevtoolsModule.instrument({
       name:"Booking Manager",

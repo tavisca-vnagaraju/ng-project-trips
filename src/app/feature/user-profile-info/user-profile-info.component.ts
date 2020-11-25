@@ -25,28 +25,26 @@ export class UserProfileInfoComponent implements OnInit {
     this.loginService.getUserInfo().subscribe(
       (data:UserInfo) => {
         this.userInfo = data;
-        this.profile.email = this.userInfo.email;
-        this.profile.name = this.userInfo.name;
-        this.profile.nickname = this.userInfo.nickname;
         this.profileService.getProfile(this.userInfo.email).subscribe(
           (dataProfile:Profile) => {
-            if(dataProfile != null){
+            if(dataProfile!=null){
               this.profile = dataProfile;
+            }
+            else{
+              this.profile.email = this.userInfo.email;
+              this.profile.name = this.userInfo.name;
+              this.profile.nickname = this.userInfo.nickname;
             }
           }
         );
         this.profileService.getAddress(this.userInfo.email).subscribe(
           (dataProfile:Address) => {
-            if(dataProfile != null){
               this.address = dataProfile;
-            }
           }
         );
         this.profileService.getCardDetails(this.userInfo.email).subscribe(
           (dataProfile:CardDetails) => {
-            if(dataProfile != null){
               this.cardDetails = dataProfile;
-            }
           }
         );
       }
