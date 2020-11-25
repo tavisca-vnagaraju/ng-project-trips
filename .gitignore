@@ -47,7 +47,6 @@ Thumbs.db
 
 # ignoring gitignore , environment and readme and Backend/node/node_modules
 
-README.md
 src/environments/environment.ts
 Backend/node/node_modules
 Backend/node/.env
