@@ -40,23 +40,6 @@ describe('TripsListComponent',()=>{
             tick(1000);
             expect(fixture.errorResponse.status).toEqual(400);
         }));
-        it('should have color red',fakeAsync(()=>{
-            const data = [
-                {
-                    "id": "748693",
-                    "status": "Cancelled",
-                    "bookedDate": "18-10-2020",
-                    "startDate": "20-12-2020",
-                    "endDate": "22-12-2020",
-                    "totalCost": "13000",
-                    "currencyCode": "USD"
-                }
-            ];
-            spyOn(tripServiceMock,'getAllTrips').and.returnValue(of(data));
-            fixture.ngOnInit();
-            tick(1000);
-            expect(fixture.color).toEqual("red");
-        }));
         it('should navigate to /trips/details page',()=>{
             fixture.cardClicked("748693");
             expect(routerMock.navigate).toHaveBeenCalled();

@@ -12,7 +12,6 @@ import {TripsList} from '../../models/app.trips-list.model';
 
 export class TripsListComponent {
   title = "Trips List";
-  color:string;
   trips:Array<TripsList>;
   errorResponse:any;
 
@@ -21,19 +20,9 @@ export class TripsListComponent {
     this.tripsService.getAllTrips().subscribe(
       (data:Array<TripsList>) => {
         this.trips = data;
-        this.setColor();
       },
       (error) => this.errorResponse = error
     );
-  }
-  setColor() {
-    this.trips.forEach(trip => {
-      if(trip.status == "Booked"){
-        this.color="green";
-      }else{
-        this.color = "red";
-      }
-    });
   }
 
   cardClicked(tripId):void{

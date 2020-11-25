@@ -8,7 +8,7 @@
 <div class="trips-list" *ngIf="trips">
     <div class="trip-card" *ngFor="let trip of trips" (click)="cardClicked(trip.id)">
         <h1><b> Trip Id - {{trip.id}} </b></h1>
-        <h2>Status - <span [style.color]="color"> {{trip.status}} </span></h2>
+        <h2>Status - <span *ngIf="trip.status == 'Booked'" style="color: green;"> {{trip.status}} </span> <span *ngIf="trip.status != 'Booked'" style="color: red;"> {{trip.status}} </span></h2>
         <div class="flex-container">
             <h2 class="booked-date">Booked on <span> {{trip.bookedDate}}</span></h2>
             <h2 class="trip-cost"> Cost - <span> {{trip.totalCost}} {{trip.currencyCode}} </span></h2>
