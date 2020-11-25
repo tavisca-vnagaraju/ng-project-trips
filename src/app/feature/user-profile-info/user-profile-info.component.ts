@@ -17,6 +17,7 @@ export class UserProfileInfoComponent implements OnInit {
   profile:Profile;
   address:Address;
   cardDetails:CardDetails;
+  errorResponse:any;
   constructor(private loginService:LoginService,private profileService:ProfileService) { 
     this.profile = new Profile("","","",null,"","");
   }
@@ -35,16 +36,25 @@ export class UserProfileInfoComponent implements OnInit {
               this.profile.name = this.userInfo.name;
               this.profile.nickname = this.userInfo.nickname;
             }
+          },
+          (error) =>{
+            this.errorResponse = error
           }
         );
         this.profileService.getAddress(this.userInfo.email).subscribe(
           (dataProfile:Address) => {
               this.address = dataProfile;
+          },
+          (error) =>{
+            this.errorResponse = error
           }
         );
         this.profileService.getCardDetails(this.userInfo.email).subscribe(
           (dataProfile:CardDetails) => {
               this.cardDetails = dataProfile;
+          },
+          (error) =>{
+            this.errorResponse = error
           }
         );
       }

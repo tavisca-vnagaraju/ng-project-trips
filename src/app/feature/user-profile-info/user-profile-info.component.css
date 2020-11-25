@@ -24,3 +24,24 @@
     border-radius: 5px;
     border: 1px solid #ced4da;
 }
+mat-spinner{
+    margin:0 auto;
+    margin-top: 150px;
+}
+.error{
+    font-size: 30px;
+    color: red;
+    background: white;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 10%;
+}
+.material-icons{
+    color: #000;
+}
+i:hover{
+    font-weight: bold;
+}
