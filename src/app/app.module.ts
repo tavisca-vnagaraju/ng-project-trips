@@ -38,6 +38,9 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
 import {loginReducer} from './ngrx/state/login/login.reducer';
 import { createCustomElement } from '@angular/elements';
+import { EffectsModule } from '@ngrx/effects';
+import { mainReducers } from './reducers/app.reducers';
+import { TripsEffects } from './effects/app.trips.effect';
 @NgModule({
   declarations: [
     Loading,
@@ -68,8 +71,9 @@ import { createCustomElement } from '@angular/elements';
     HttpClientModule,
     BrowserAnimationsModule,
     FeatureModule,
-    StoreModule.forRoot({}),
+    StoreModule.forRoot(mainReducers),
     StoreModule.forFeature('login', loginReducer),
+    EffectsModule.forRoot([TripsEffects]),
     StoreDevtoolsModule.instrument({
       name:"Booking Manager",
       maxAge:40,

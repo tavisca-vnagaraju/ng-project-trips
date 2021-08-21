@@ -1,12 +1,12 @@
 <heading-element [value]="title"></heading-element>
-<div *ngIf="!trips && !errorResponse">
+<!-- <div *ngIf="!trips && !errorResponse">
     <mat-spinner></mat-spinner>
 </div>
 <div *ngIf="errorResponse" class="error">
     Unknown Error
-</div>
-<div class="trips-list" *ngIf="trips">
-    <div class="trip-card" *ngFor="let trip of trips" (click)="cardClicked(trip.id)">
+</div> -->
+<div class="trips-list">
+    <div class="trip-card" *ngFor="let trip of trips$ | async" (click)="cardClicked(trip.id)">
         <h1><b> Trip Id - {{trip.id}} </b></h1>
         <h2>Status - <span *ngIf="trip.status == 'Booked'" style="color: green;"> {{trip.status}} </span> <span *ngIf="trip.status != 'Booked'" style="color: red;"> {{trip.status}} </span></h2>
         <div class="flex-container">
